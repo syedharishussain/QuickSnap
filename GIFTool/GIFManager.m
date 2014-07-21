@@ -83,10 +83,6 @@
         }
     } else if (uploadedKeys.count < fileNames.count) {
         
-//        if ([fileNames containsObject:@".DS_Store"]) {
-//            [fileNames removeObject:@".DS_Store"];
-//        }
-        
         for (int i = 0 ; i < fileNames.count ; i++) {
             if (![uploadedKeys containsObject:fileNames[i]]) {
                 
