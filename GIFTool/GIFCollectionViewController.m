@@ -157,6 +157,7 @@
     NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
+    documentsDirectory = NSTemporaryDirectory();
     NSString *tempPath = [documentsDirectory stringByAppendingFormat:@"/video.mp4"];
     
     if ([videoData writeToFile:tempPath atomically:NO]) {

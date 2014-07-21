@@ -18,7 +18,9 @@
 +(void)saveGIFFromImages:(NSArray*)images toPath:(NSString *)path WithCallbackBlock:(void (^)(void))callbackBlock{
     [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
     
-    float delay = 1.0/15.0;
+    float delayFactor = ((NSNumber*)[Utils FPS][KEY_FPS]).floatValue;
+    
+    float delay = 1.0/delayFactor;
 
     NSDictionary *prep = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:delay] forKey:(NSString *) kCGImagePropertyGIFDelayTime] forKey:(NSString *) kCGImagePropertyGIFDictionary];
     

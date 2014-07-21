@@ -468,7 +468,7 @@
 				ORGANIZATIONNAME = HarisHussain;
 				TargetAttributes = {
 					669640E5191FF73E00017C73 = {
-						DevelopmentTeam = WWTXYA5P6T;
+						DevelopmentTeam = 789EBQQ24H;
 					};
 					66964106191FF73E00017C73 = {
 						TestTargetID = 669640E5191FF73E00017C73;

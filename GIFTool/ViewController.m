@@ -45,6 +45,14 @@
     create = [[CreateGIF alloc] init];
     create.delegate = self;
     
+    if (![Utils FPS]) {
+        [Utils setFPS:@{
+                        KEY_FPS         : @5,
+                        KEY_SEGMENT     : @0,
+                        KEY_INCREMENT   : @6
+                        }];
+    }
+
     UIImage *image = [UIImage imageNamed:@"icon_01"];
     [self.navigationController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:image]];
     
@@ -168,6 +176,7 @@
     NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
+    documentsDirectory = NSTemporaryDirectory();
     NSString *tempPath = [documentsDirectory stringByAppendingFormat:@"/video.mp4"];
     
     if ([videoData writeToFile:tempPath atomically:NO]) {

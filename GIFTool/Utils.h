@@ -10,6 +10,10 @@
 
 @interface Utils : NSObject
 
+#define KEY_FPS             @"key_fps"
+#define KEY_SEGMENT         @"key_segment"
+#define KEY_INCREMENT       @"key_increment"
+
 + (void)removeAllFilesFromNSTemporaryDirectory;
 + (void)removeAllFilesFromNSDocumentDirectory;
 + (void)removeFileFromNSDocumentDirectory:(NSString*)fileName;
@@ -27,6 +31,9 @@
 
 + (BOOL)isLoggedIn;
 + (void)setLoggedIn:(BOOL)loggedIn;
+
++ (void)setFPS:(NSDictionary *)fps;
++ (NSDictionary *)FPS;
 
 + (void)clearUserData;
 

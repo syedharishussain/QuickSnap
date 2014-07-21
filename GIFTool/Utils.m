@@ -125,4 +125,13 @@
     [Utils removeAllFilesFromNSDocumentDirectory];
 }
 
++ (void)setFPS:(NSDictionary *)fps {
+    [[NSUserDefaults standardUserDefaults] setObject:fps forKey:@"fps"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSDictionary *)FPS {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"fps"];
+}
+
 @end

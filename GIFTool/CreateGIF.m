@@ -50,11 +50,12 @@
     
     NSMutableArray * times = [[NSMutableArray alloc] init];
     
+    int increment = ((NSNumber*)[Utils FPS][KEY_INCREMENT]).intValue;
+    
     // *** Fetch First 200 frames only ***
-    for (int i=0; i<totalFrames; i++) {
+    for (int i=0; i<totalFrames; i+=increment) {
         NSValue * time = [NSValue valueWithCMTime:CMTimeMakeWithSeconds(i*frameDuration, composition.frameDuration.timescale)];
         [times addObject:time];
-        i++;
     }
     
     self.filePathArray = [NSMutableArray new];

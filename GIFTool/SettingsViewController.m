@@ -16,12 +16,21 @@
 
 @implementation SettingsViewController
 
+@synthesize segmentedController;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     UIImage *image = [UIImage imageNamed:@"icon_01"];
     [self.navigationController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:image]];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if ([Utils FPS][KEY_SEGMENT])
+        segmentedController.selectedSegmentIndex = ((NSNumber*)[Utils FPS][KEY_SEGMENT]).integerValue;
 }
 
 /*
@@ -43,5 +52,41 @@
     [Utils clearUserData];
     
     [self performSegueWithIdentifier:@"register" sender:nil];
+}
+
+- (IBAction)segmentedControllerValueChange:(id)sender {
+    self.fpsLabel.text = [NSString stringWithFormat:@"%@", [segmentedController titleForSegmentAtIndex:segmentedController.selectedSegmentIndex]];
+    NSDictionary *dic = [NSDictionary new];
+    switch (segmentedController.selectedSegmentIndex) {
+        case 0:{
+            dic = @{
+                    KEY_FPS         : @5,
+                    KEY_SEGMENT     : @0,
+                    KEY_INCREMENT   : @6
+                    };
+            break;
+        }
+        case 1:{
+            dic = @{
+                    KEY_FPS         : @10,
+                    KEY_SEGMENT     : @1,
+                    KEY_INCREMENT   : @3
+                    };
+            break;
+        }
+        case 2:{
+            dic = @{
+                    KEY_FPS         : @15,
+                    KEY_SEGMENT     : @2,
+                    KEY_INCREMENT   : @2
+                    };
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+    [Utils setFPS:dic];
 }
 @end
