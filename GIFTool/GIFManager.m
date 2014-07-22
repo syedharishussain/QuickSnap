@@ -50,7 +50,7 @@
                   [self checkLocalFiles];
                   
               } else {
-//                  [Utils showAlertWithTitle:nil andMessage:responseObject[@"header"][@"message"]];
+                  
               }
               
               NSLog(@"JSON: %@", responseObject);
@@ -144,37 +144,6 @@
                                  @"get": @"upload",
                                  @"id": [Utils userID]};
     
-    //    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST"
-    //                                                                                              URLString:@"http://aceist.com/gifs/api.php"
-    //                                                                                             parameters:parameters
-    //                                                                              constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    //                                                                                  [formData appendPartWithFileURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"icon_01" ofType:@"png"]]
-    //                                                                                                             name:@"filename"
-    //                                                                                                         fileName:@"filename.jpg"
-    //                                                                                                         mimeType:@"image/gif"
-    //                                                                                                            error:nil];
-    //                                                                              } error:nil];
-    //
-    //    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    //    NSProgress *progress = nil;
-    //
-    //    [progress addObserver:self forKeyPath:@"fractionCompleted" options:NSKeyValueObservingOptionNew context:nil];
-    //
-    //    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request
-    //                                                                       progress:&progress
-    //                                                              completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-    //                                                                  if (error) {
-    //                                                                      NSLog(@"Error: %@", error);
-    //                                                                  } else {
-    //                                                                      NSLog(@"%@ %@", response, responseObject);
-    //                                                                  }
-    //                                                              }];
-    //    [uploadTask resume];
-    //
-    //    [progress addObserver:self forKeyPath:@"fractionCompleted" options:NSKeyValueObservingOptionNew context:NULL];
-    
-    
-    
     // 1. Create `AFHTTPRequestSerializer` which will create your request.
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
     
@@ -183,11 +152,6 @@
                                                                     URLString:@"http://aceist.com/gifs/api.php"
                                                                    parameters:parameters
                                                     constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//                                                        [formData appendPartWithFileURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"1" ofType:@"gif"]]
-//                                                                                   name:@"filename"
-//                                                                               fileName:fileanme
-//                                                                               mimeType:@"image/gif"
-//                                                                                  error:nil];
                                                         
                                                         [formData appendPartWithFileURL:[NSURL fileURLWithPath:path]
                                                                                    name:@"filename"
