@@ -38,6 +38,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="U2K-Q9-h47"/>
                     <connections>
+                        <outlet property="deleteOutlet" destination="sFz-WS-tE2" id="cqk-rf-1Ea"/>
                         <outlet property="imageView" destination="qTJ-tP-6bJ" id="vNm-QI-DO0"/>
                     </connections>
                 </viewController>

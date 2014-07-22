@@ -201,18 +201,36 @@
 
 - (void)deleteGIF:(NSString*)path {
     
+    NSString *fileanme = [[path componentsSeparatedByString:@"/"] lastObject];
     
+    File *file = self.files[fileanme];
     
-    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    NSDictionary *parameters = @{@"key": @"123456789",
-//                                 @"get": @"delete",
-//                                 @"id": @""};
-//    [manager POST:@"http://aceist.com/gifs/api.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"JSON: %@", responseObject);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Error: %@", error);
-//    }];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"key": @"123456789",
+                                 @"get": @"delete",
+                                 @"id": file.Id};
+    [manager POST:@"http://aceist.com/gifs/api.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        
+        NSNumber * success = responseObject[@"header"][@"status"];
+        
+        if (success.boolValue) {
+        NSMutableDictionary *uploadedGIFs = self.files;
+        [uploadedGIFs removeObjectForKey:fileanme];
+        self.files = uploadedGIFs;
+            
+        [Utils removeFileFromNSDocumentDirectory:path];
+            
+        }
+        
+        else {
+            [Utils showAlertWithTitle:nil andMessage:responseObject[@"header"][@"message"]];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [Utils showAlertWithTitle:nil andMessage:error.localizedDescription];
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 

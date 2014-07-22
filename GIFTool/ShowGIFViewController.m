@@ -30,6 +30,9 @@
     UIImage *image = [UIImage imageNamed:@"icon_01"];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:image];
+    
+    if (!self.isMySnaps)
+        [self.deleteOutlet setEnabled:NO];
 }
 
 
@@ -53,6 +56,8 @@
 - (IBAction)deleteGIF:(id)sender {
     NSLog(@"%@", self.imagePath);
     [[GIFManager shared] deleteGIF:self.imagePath];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UIActionSheet Delegate

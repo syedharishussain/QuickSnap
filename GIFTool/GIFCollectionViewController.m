@@ -58,6 +58,13 @@
     self.titleLabel.text = (self.isMySnaps) ? @"My GIFs" : @"All GIFs";
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (self.isMySnaps) {
+        gifArray = [[Utils NSDocumentDirfiles] mutableCopy];
+    }
+}
+
 - (IBAction)createGIF:(id)sender {
     [self startCameraControllerFromViewController:self usingDelegate:self];
 }
@@ -97,6 +104,7 @@
     if ([segue.identifier isEqualToString:@"showGIF"]) {
         ShowGIFViewController *con = segue.destinationViewController;
         con.imagePath = sender;
+        con.isMySnaps = self.isMySnaps;
     }
 }
 

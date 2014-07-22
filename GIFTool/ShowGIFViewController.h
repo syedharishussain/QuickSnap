@@ -12,9 +12,12 @@
 
 @interface ShowGIFViewController : UIViewController
 
+@property (nonatomic, assign) BOOL isMySnaps;
+
 @property (nonatomic, retain) NSString *imagePath;
 
 @property (strong, nonatomic) IBOutlet OLImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteOutlet;
 
 - (IBAction)share:(id)sender;
 
