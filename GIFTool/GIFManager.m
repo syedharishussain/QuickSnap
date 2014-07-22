@@ -200,13 +200,13 @@
     [defaults synchronize];
 }
 
-- (void)deleteGIF:(NSString*)path {
+- (void)deleteGIF:(NSString*)path completionHandler:(void (^)())completion{
     
     NSString *fileanme = [[path componentsSeparatedByString:@"/"] lastObject];
     
     File *file = self.files[fileanme];
     
-    [SVProgressHUD showWithStatus:@"Registering.."];
+    [SVProgressHUD showWithStatus:@"Deleting.."];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"key": @"123456789",
@@ -224,6 +224,8 @@
         self.files = uploadedGIFs;
             
         [Utils removeFileFromNSDocumentDirectory:path];
+            
+            completion();
             
         }
         

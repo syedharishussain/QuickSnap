@@ -54,7 +54,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
+    [super viewWillAppear:animated];
+    
+    if (self.isMySnaps) {
+        gifArray = [[Utils NSDocumentDirfiles] mutableCopy];
+        [self.collectionView reloadData];
+    }
     
     if (![GIFManager shared].isAllFilesDownloaded && self.isMySnaps) {
         self.spinner.hidden = NO;
@@ -68,9 +73,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (self.isMySnaps) {
-        gifArray = [[Utils NSDocumentDirfiles] mutableCopy];
-    }
 }
 
 - (IBAction)createGIF:(id)sender {

@@ -24,12 +24,7 @@
 
 #pragma mark - Convert Video to Images
 
-- (void)convertVideoToImages:(NSString*)path {
-    
-    [SVProgressHUD showWithStatus:@"Creating GIF.."];
-    
-//    [Utils removeAllFilesFromNSTemporaryDirectory];
-    
+- (void)convertVideoToImages:(NSString*)path {    
     AVAsset *asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:path]];
     
     //setting up generator & compositor

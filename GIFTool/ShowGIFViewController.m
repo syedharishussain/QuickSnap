@@ -35,17 +35,6 @@
         [self.deleteOutlet setEnabled:NO];
 }
 
-
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
-
 - (IBAction)share:(id)sender {
     UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"share QuickSnap"
                                                              delegate:self
@@ -55,9 +44,19 @@
 
 - (IBAction)deleteGIF:(id)sender {
     NSLog(@"%@", self.imagePath);
-    [[GIFManager shared] deleteGIF:self.imagePath];
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    [[GIFManager shared] deleteGIF:self.imagePath completionHandler:^{
+       [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
 
 #pragma mark - UIActionSheet Delegate

@@ -85,14 +85,16 @@
     NSString *tempPath = [docDir stringByAppendingPathComponent:
                           [Utils generateFileNameWithExtension:@".gif"]];
     
-    [HJImagesToGIF saveGIFFromImages:images toPath:tempPath WithCallbackBlock:nil];
+    [SVProgressHUD showWithStatus:@"Creating GIF.."];
+    
+    [HJImagesToGIF saveGIFFromImages:images toPath:tempPath WithCallbackBlock:^{
+        [SVProgressHUD dismiss];
+    }];
     
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     
     NSData *data = [NSData dataWithContentsOfFile:tempPath];
-    
-    [SVProgressHUD dismiss];
-    
+
     [library writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
         if (error) {
             NSLog(@"Error Saving GIF to Photo Album: %@", error);
