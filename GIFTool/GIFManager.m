@@ -11,6 +11,11 @@
 #import "Utils.h"
 #import "SVProgressHUD.h"
 
+#define KEY_FILE_ID             @"id"
+#define KEY_FILE_NAME           @"file_name"
+#define KEY_FILE_ORIGINAL_NAME  @"gifs_filename_original"
+#define KEY_FILE_SERVER_URL     @"url"
+
 @implementation GIFManager
 
 @synthesize isAllFilesDownloaded;
@@ -25,40 +30,42 @@
 
 - (void)getList {
     
-    NSMutableDictionary *list = [NSMutableDictionary new];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"key": @"123456789",
-                                 @"get": @"list",
-                                 @"id": [Utils userID]
-                                 };
-    
-    [manager POST:@"http://aceist.com/gifs/api.php"
-       parameters:parameters
-          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              NSNumber * success = responseObject[@"header"][@"status"];
-              
-              if (success.boolValue) {
-                  NSArray *array =responseObject[@"body"][@"list"];
-                  [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                      File *file = [File objectWithDictionary:obj];
-                      [list setObject:file forKey:file.fileNameOriginal];
-                  }];
+    if ([Utils isLoggedIn]) {
+        NSMutableDictionary *list = [NSMutableDictionary new];
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSDictionary *parameters = @{@"key": @"123456789",
+                                     @"get": @"list",
+                                     @"id": [Utils userID]
+                                     };
+        
+        [manager POST:@"http://aceist.com/gifs/api.php"
+           parameters:parameters
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  NSNumber * success = responseObject[@"header"][@"status"];
                   
-                  [self setFiles:list];
-                  isAllFilesDownloaded = NO;
+                  if (success.boolValue) {
+                      NSArray *array =responseObject[@"body"][@"list"];
+                      [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                          File *file = [File objectWithDictionary:obj];
+                          [list setObject:file forKey:file.fileNameOriginal];
+                      }];
+                      
+                      [self setFiles:list];
+                      isAllFilesDownloaded = NO;
+                      
+                      [self checkLocalFiles];
+                      
+                  } else {
+                      
+                  }
                   
-                  [self checkLocalFiles];
-                  
-              } else {
-                  
-              }
-              
-              NSLog(@"JSON: %@", responseObject);
-          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              [Utils showAlertWithTitle:nil andMessage:error.localizedDescription];
-              NSLog(@"Error: %@", error);
-          }];
+                  NSLog(@"JSON: %@", responseObject);
+              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  [Utils showAlertWithTitle:nil andMessage:error.localizedDescription];
+                  NSLog(@"Error: %@", error);
+              }];
+    }
 }
 
 - (void)checkLocalFiles {
@@ -72,12 +79,14 @@
         [fileNames addObject:fileName];
     }];
     
-    NSMutableSet *unionSet = fileNames;
-    [unionSet unionSet:[uploadedFiles mutableCopy]];
+    NSSet *set = fileNames;
     
-    if (uploadedKeys.count == fileNames.count == unionSet.count) {
+    if (uploadedKeys.count == fileNames.count && [set isEqualToSet:uploadedKeys]) {
         isAllFilesDownloaded = YES;
-    } else if ([uploadedKeys allObjects].count > fileNames.count) {
+        return;
+    }
+    
+    if ([uploadedKeys allObjects].count > fileNames.count || ![set isEqualToSet:uploadedKeys]) {
         for (int i = 0 ; i < uploadedKeys.count ; i++) {
             if (![fileNames containsObject:[uploadedKeys allObjects][i]]) {
                 File *file = uploadedFiles[[uploadedKeys allObjects][i]];
@@ -85,7 +94,9 @@
                 break;
             }
         }
-    } else if (uploadedKeys.count < [fileNames allObjects].count) {
+    }
+    
+    if (uploadedKeys.count < [fileNames allObjects].count || ![set isEqualToSet:uploadedKeys]) {
         
         for (int i = 0 ; i < [fileNames allObjects].count ; i++) {
             if (![uploadedKeys containsObject:[fileNames allObjects][i]]) {
@@ -98,6 +109,14 @@
                                                                                          error:nil];
                 
                 NSURL *fileURL = [documentsDirectoryURL URLByAppendingPathComponent:[fileNames allObjects][i]];
+                
+                File *newFile = [File objectWithDictionary:@{KEY_FILE_ORIGINAL_NAME:[fileNames allObjects][i]}];
+                
+                NSMutableDictionary *dic = self.files;
+                
+                [dic setObject:newFile forKey:newFile.fileNameOriginal];
+                self.files = dic;
+                
                 [self uploadGIF:fileURL.relativePath];
                 break;
             }
@@ -106,6 +125,8 @@
 }
 
 - (void)downloadGIF:(NSString*)url {
+    if (!self.downloadtasks) self.downloadtasks = [NSMutableSet new];
+    
     NSString *fileanme = [[url componentsSeparatedByString:@"/"] lastObject];
     
     NSLog(@"File To Be Downloaded - %@", fileanme);
@@ -117,8 +138,6 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
     NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-        if (!isAllFilesDownloaded) [self checkLocalFiles];
-        
         NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory
                                                                               inDomain:NSUserDomainMask
                                                                      appropriateForURL:nil
@@ -130,14 +149,21 @@
         return [documentsDirectoryURL URLByAppendingPathComponent:downlaodedFileName];
         
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        if (!isAllFilesDownloaded) [self checkLocalFiles];
+        
         [self.delegate fileDownloaded];
         NSLog(@"File downloaded to: %@", filePath);
     }];
     
+    [self.downloadtasks addObject:downloadTask];
+    
     [downloadTask resume];
     
     [manager setDownloadTaskDidWriteDataBlock:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-        //        NSLog(@"%@ - %lli / %lli",fileanme, totalBytesWritten , totalBytesExpectedToWrite);
+        NSLog(@"Downloading %@ - %lli / %lli",fileanme, totalBytesWritten , totalBytesExpectedToWrite);
+        if (totalBytesWritten == totalBytesExpectedToWrite) {
+            [self.downloadtasks removeObject:downloadTask];
+        }
     }];
 }
 
@@ -179,7 +205,7 @@
     [operation setUploadProgressBlock:^(NSUInteger __unused bytesWritten,
                                         long long totalBytesWritten,
                                         long long totalBytesExpectedToWrite) {
-        NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
+        NSLog(@"Uploading %@ %lld/%lld", fileanme, totalBytesWritten, totalBytesExpectedToWrite);
     }];
     
     // 5. Begin!
@@ -209,7 +235,7 @@
     
     File *file = self.files[fileanme];
     
-    if (file) {
+    if (file && file.Id) {
         [SVProgressHUD showWithStatus:@"Deleting.."];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -269,11 +295,11 @@
     self=[super init];
     if(self)
     {
-        Id = [dictionary objectForKey:@"id"];
-        fileName = [dictionary objectForKey:@"file_name"];
-        fileNameOriginal = [dictionary objectForKey:@"gifs_filename_original"];
+        Id = [dictionary objectForKey:KEY_FILE_ID];
+        fileName = [dictionary objectForKey:KEY_FILE_NAME];
+        fileNameOriginal = [dictionary objectForKey:KEY_FILE_ORIGINAL_NAME];
         gifsCreated = [dictionary objectForKey:@"gifs_created"];
-        url = [dictionary objectForKey:@"url"];
+        url = [dictionary objectForKey:KEY_FILE_SERVER_URL];
     }
     return self;
 }

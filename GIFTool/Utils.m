@@ -7,6 +7,7 @@
 //
 
 #import "Utils.h"
+#import "GIFManager.h"
 
 @implementation Utils
 
@@ -121,6 +122,17 @@
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"email"];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isLoggedIn"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSMutableSet *set = [GIFManager shared].downloadtasks;
+    
+    [set enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        NSURLSessionDataTask* task = obj;
+        [task cancel];
+    }];
+    
+    [[GIFManager shared].downloadtasks removeAllObjects];
+    
+    [GIFManager shared].files = [NSMutableDictionary new];
     
     [Utils removeAllFilesFromNSDocumentDirectory];
 }

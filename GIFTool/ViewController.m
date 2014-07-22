@@ -47,9 +47,9 @@
     
     if (![Utils FPS]) {
         [Utils setFPS:@{
-                        KEY_FPS         : @5,
-                        KEY_SEGMENT     : @0,
-                        KEY_INCREMENT   : @6
+                        KEY_FPS         : @15,
+                        KEY_SEGMENT     : @2,
+                        KEY_INCREMENT   : @2
                         }];
     }
 
@@ -79,7 +79,7 @@
     if (![Utils isLoggedIn]) {
         [self performSegueWithIdentifier:@"register" sender:nil];
     } else {
-        [[GIFManager shared] getList];
+//        [[GIFManager shared] checkLocalFiles];
     }
 }
 

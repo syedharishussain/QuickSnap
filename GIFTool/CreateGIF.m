@@ -17,6 +17,7 @@
 #import <MessageUI/MessageUI.h>
 
 #import "SVProgressHUD.h"
+#import "GIFManager.h"
 
 @implementation CreateGIF
 
@@ -98,6 +99,7 @@
         self.videoPath = videoPath;
         
         [Utils removeFileFromNSDocumentDirectory:self.videoPath];
+        [GIFManager shared].isAllFilesDownloaded = NO;
         [self.delegate GIFCreationComplete:filePath];
     }];
 }

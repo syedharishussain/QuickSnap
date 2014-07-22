@@ -18,6 +18,7 @@
 
 @property (nonatomic, assign) BOOL isAllFilesDownloaded;
 @property (nonatomic, retain) NSMutableDictionary *files;
+@property (nonatomic, retain) NSMutableSet *downloadtasks;
 @property (nonatomic, retain) id <GIFManagerProtocol> delegate;
 
 + (GIFManager *)shared;
