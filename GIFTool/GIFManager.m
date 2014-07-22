@@ -9,6 +9,7 @@
 #import "GIFManager.h"
 #import "AFNetworking.h"
 #import "Utils.h"
+#import "SVProgressHUD.h"
 
 @implementation GIFManager
 
@@ -205,12 +206,15 @@
     
     File *file = self.files[fileanme];
     
+    [SVProgressHUD showWithStatus:@"Registering.."];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"key": @"123456789",
                                  @"get": @"delete",
                                  @"id": file.Id};
     [manager POST:@"http://aceist.com/gifs/api.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+        [SVProgressHUD dismiss];
         
         NSNumber * success = responseObject[@"header"][@"status"];
         
@@ -228,6 +232,7 @@
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         [Utils showAlertWithTitle:nil andMessage:error.localizedDescription];
         NSLog(@"Error: %@", error);
     }];
