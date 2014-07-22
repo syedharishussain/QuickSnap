@@ -62,17 +62,20 @@
 }
 
 - (void)checkLocalFiles {
-    NSSet *localFile = [NSSet setWithArray:[Utils NSDocumentDirfiles]];
+    NSMutableSet *localFile = [NSMutableSet setWithArray:[Utils NSDocumentDirfiles]];
     NSMutableSet *fileNames = [NSMutableSet new];
     NSMutableDictionary *uploadedFiles = self.files;
-    NSSet *uploadedKeys = [NSSet setWithArray:uploadedFiles.allKeys];
+    NSMutableSet *uploadedKeys = [NSMutableSet setWithArray:uploadedFiles.allKeys];
     
     [[localFile allObjects] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSString *fileName = [[obj componentsSeparatedByString:@"/"] lastObject];
         [fileNames addObject:fileName];
     }];
     
-    if (uploadedKeys.count == fileNames.count) {
+    NSMutableSet *unionSet = fileNames;
+    [unionSet unionSet:[uploadedFiles mutableCopy]];
+    
+    if (uploadedKeys.count == fileNames.count == unionSet.count) {
         isAllFilesDownloaded = YES;
     } else if ([uploadedKeys allObjects].count > fileNames.count) {
         for (int i = 0 ; i < uploadedKeys.count ; i++) {
@@ -127,14 +130,14 @@
         return [documentsDirectoryURL URLByAppendingPathComponent:downlaodedFileName];
         
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-         [self.delegate fileDownloaded];
+        [self.delegate fileDownloaded];
         NSLog(@"File downloaded to: %@", filePath);
     }];
     
     [downloadTask resume];
     
     [manager setDownloadTaskDidWriteDataBlock:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-//        NSLog(@"%@ - %lli / %lli",fileanme, totalBytesWritten , totalBytesExpectedToWrite);
+        //        NSLog(@"%@ - %lli / %lli",fileanme, totalBytesWritten , totalBytesExpectedToWrite);
     }];
 }
 
@@ -206,38 +209,42 @@
     
     File *file = self.files[fileanme];
     
-    [SVProgressHUD showWithStatus:@"Deleting.."];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"key": @"123456789",
-                                 @"get": @"delete",
-                                 @"id": file.Id};
-    [manager POST:@"http://aceist.com/gifs/api.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        [SVProgressHUD dismiss];
+    if (file) {
+        [SVProgressHUD showWithStatus:@"Deleting.."];
         
-        NSNumber * success = responseObject[@"header"][@"status"];
-        
-        if (success.boolValue) {
-        NSMutableDictionary *uploadedGIFs = self.files;
-        [uploadedGIFs removeObjectForKey:fileanme];
-        self.files = uploadedGIFs;
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSDictionary *parameters = @{@"key": @"123456789",
+                                     @"get": @"delete",
+                                     @"id": file.Id};
+        [manager POST:@"http://aceist.com/gifs/api.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+            [SVProgressHUD dismiss];
             
-        [Utils removeFileFromNSDocumentDirectory:path];
+            NSNumber * success = responseObject[@"header"][@"status"];
             
-            completion();
+            if (success.boolValue) {
+                NSMutableDictionary *uploadedGIFs = self.files;
+                [uploadedGIFs removeObjectForKey:fileanme];
+                self.files = uploadedGIFs;
+                
+                [Utils removeFileFromNSDocumentDirectory:path];
+                
+                completion();
+                
+            }
             
-        }
-        
-        else {
-            [Utils showAlertWithTitle:nil andMessage:responseObject[@"header"][@"message"]];
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
-        [Utils showAlertWithTitle:nil andMessage:error.localizedDescription];
-        NSLog(@"Error: %@", error);
-    }];
+            else {
+                [Utils showAlertWithTitle:nil andMessage:responseObject[@"header"][@"message"]];
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD dismiss];
+            [Utils showAlertWithTitle:nil andMessage:error.localizedDescription];
+            NSLog(@"Error: %@", error);
+        }];
+    } else {
+        [Utils showAlertWithTitle:@"QuickSnap Delete Error" andMessage:@"Data is Syncing with Server, please wait a while before trying again."];
+    }
 }
 
 
