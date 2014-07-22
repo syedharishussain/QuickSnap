@@ -235,6 +235,22 @@
     [defaults synchronize];
 }
 
+- (void)deleteGIF:(NSString*)path {
+    
+    
+    
+    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    NSDictionary *parameters = @{@"key": @"123456789",
+//                                 @"get": @"delete",
+//                                 @"id": @""};
+//    [manager POST:@"http://aceist.com/gifs/api.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"JSON: %@", responseObject);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//    }];
+}
+
 
 @end
 

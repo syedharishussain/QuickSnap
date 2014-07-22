@@ -25,6 +25,7 @@
 - (void)uploadGIF:(NSString*)path;
 - (void)getList;
 - (void)checkLocalFiles;
+- (void)deleteGIF:(NSString*)path;
 
 @end
 

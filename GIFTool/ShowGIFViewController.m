@@ -12,6 +12,7 @@
 #import "OLImage.h"
 #import <MessageUI/MessageUI.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "GIFManager.h"
 
 @interface ShowGIFViewController () <UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
@@ -50,7 +51,8 @@
 }
 
 - (IBAction)deleteGIF:(id)sender {
-    
+    NSLog(@"%@", self.imagePath);
+    [[GIFManager shared] deleteGIF:self.imagePath];
 }
 
 #pragma mark - UIActionSheet Delegate
