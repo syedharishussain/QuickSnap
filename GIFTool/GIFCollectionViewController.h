@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UIButton *cameraButton;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 
 - (IBAction)createGIF:(id)sender;

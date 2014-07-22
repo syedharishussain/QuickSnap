@@ -55,7 +55,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    self.titleLabel.text = (self.isMySnaps) ? @"My GIFs" : @"All GIFs";
+    
+    if (![GIFManager shared].isAllFilesDownloaded && self.isMySnaps) {
+        self.spinner.hidden = NO;
+        [self.spinner startAnimating];
+        [self.titleLabel setText:@"Downloading My Snaps"];
+    } else {
+        self.spinner.hidden = YES;
+        self.titleLabel.text = (self.isMySnaps) ? @"My GIFs" : @"All GIFs";
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -208,6 +216,15 @@
     if (self.isMySnaps) {
         self.gifArray = [[Utils NSDocumentDirfiles] mutableCopy];
         [self.collectionView reloadData];
+        
+        if (![GIFManager shared].isAllFilesDownloaded && self.isMySnaps) {
+            self.spinner.hidden = NO;
+            [self.spinner startAnimating];
+            [self.titleLabel setText:@"Downloading My Snaps"];
+        } else {
+            self.spinner.hidden = YES;
+            self.titleLabel.text = (self.isMySnaps) ? @"My GIFs" : @"All GIFs";
+        }
     }
 }
 

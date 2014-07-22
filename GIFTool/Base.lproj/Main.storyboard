@@ -110,13 +110,17 @@
                                     <outlet property="delegate" destination="HIK-H3-1tg" id="Dbk-z7-P81"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nJH-Tl-9cn">
-                                <rect key="frame" x="20" y="7" width="280" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" id="nJH-Tl-9cn">
+                                <rect key="frame" x="49" y="7" width="223" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" id="0WF-a6-QHC">
+                                <rect key="frame" x="20" y="8" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -131,6 +135,7 @@
                     <connections>
                         <outlet property="cameraButton" destination="YkY-5T-emX" id="aPG-xh-DM7"/>
                         <outlet property="collectionView" destination="1y4-67-p07" id="L6h-Ir-WPc"/>
+                        <outlet property="spinner" destination="0WF-a6-QHC" id="Cx0-b3-OAv"/>
                         <outlet property="titleLabel" destination="nJH-Tl-9cn" id="zdN-O0-Euq"/>
                         <segue destination="QzB-Jt-Z9g" kind="push" identifier="showGIF" id="WX4-B1-C1P"/>
                         <segue destination="gbO-fb-g1A" kind="modal" identifier="register" id="90I-Me-jdn"/>
