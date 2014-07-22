@@ -85,11 +85,13 @@
     NSString *tempPath = [docDir stringByAppendingPathComponent:
                           [Utils generateFileNameWithExtension:@".gif"]];
     
-    [SVProgressHUD showWithStatus:@"Creating GIF.."];
+//    [SVProgressHUD showWithStatus:@"Creating GIF.."];
     
     [HJImagesToGIF saveGIFFromImages:images toPath:tempPath WithCallbackBlock:^{
-        [SVProgressHUD dismiss];
+        
     }];
+    
+//    [SVProgressHUD dismiss];
     
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     
@@ -105,9 +107,6 @@
             success(tempPath);
         }
     }];
-
 }
-
-
 
 @end

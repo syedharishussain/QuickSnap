@@ -62,30 +62,30 @@
 }
 
 - (void)checkLocalFiles {
-    NSArray *localFile = [Utils NSDocumentDirfiles];
-    NSMutableArray *fileNames = [NSMutableArray new];
+    NSSet *localFile = [NSSet setWithArray:[Utils NSDocumentDirfiles]];
+    NSMutableSet *fileNames = [NSMutableSet new];
     NSMutableDictionary *uploadedFiles = self.files;
-    NSArray *uploadedKeys = uploadedFiles.allKeys;
+    NSSet *uploadedKeys = [NSSet setWithArray:uploadedFiles.allKeys];
     
-    [localFile enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [[localFile allObjects] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSString *fileName = [[obj componentsSeparatedByString:@"/"] lastObject];
         [fileNames addObject:fileName];
     }];
     
     if (uploadedKeys.count == fileNames.count) {
         isAllFilesDownloaded = YES;
-    } else if (uploadedKeys.count > fileNames.count) {
+    } else if ([uploadedKeys allObjects].count > fileNames.count) {
         for (int i = 0 ; i < uploadedKeys.count ; i++) {
-            if (![fileNames containsObject:uploadedKeys[i]]) {
-                File *file = uploadedFiles[uploadedKeys[i]];
+            if (![fileNames containsObject:[uploadedKeys allObjects][i]]) {
+                File *file = uploadedFiles[[uploadedKeys allObjects][i]];
                 [self downloadGIF:file.url];
                 break;
             }
         }
-    } else if (uploadedKeys.count < fileNames.count) {
+    } else if (uploadedKeys.count < [fileNames allObjects].count) {
         
-        for (int i = 0 ; i < fileNames.count ; i++) {
-            if (![uploadedKeys containsObject:fileNames[i]]) {
+        for (int i = 0 ; i < [fileNames allObjects].count ; i++) {
+            if (![uploadedKeys containsObject:[fileNames allObjects][i]]) {
                 
                 
                 NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory
@@ -94,7 +94,7 @@
                                                                                         create:NO
                                                                                          error:nil];
                 
-                NSURL *fileURL = [documentsDirectoryURL URLByAppendingPathComponent:fileNames[i]];
+                NSURL *fileURL = [documentsDirectoryURL URLByAppendingPathComponent:[fileNames allObjects][i]];
                 [self uploadGIF:fileURL.relativePath];
                 break;
             }
@@ -167,7 +167,7 @@
     [manager HTTPRequestOperationWithRequest:request
                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                          NSLog(@"Success %@", responseObject);
-                                         if (!isAllFilesDownloaded) [self checkLocalFiles];
+                                         if (!isAllFilesDownloaded) [self getList];
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          NSLog(@"Failure %@", error.description);
                                      }];
