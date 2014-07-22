@@ -18,4 +18,6 @@
 
 - (IBAction)share:(id)sender;
 
+- (IBAction)deleteGIF:(id)sender;
+
 @end

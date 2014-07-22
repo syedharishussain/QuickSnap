@@ -177,7 +177,9 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     documentsDirectory = NSTemporaryDirectory();
-    NSString *tempPath = [documentsDirectory stringByAppendingFormat:@"/video.mp4"];
+    NSString *tempPath = [documentsDirectory stringByAppendingFormat:@"video.mp4"];
+    
+    [Utils removeAllFilesFromNSTemporaryDirectory];
     
     if ([videoData writeToFile:tempPath atomically:NO]) {
         NSLog(@"Video Written Successfully at: %@", tempPath);

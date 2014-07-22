@@ -49,6 +49,10 @@
     [actionsheet showInView:self.view];
 }
 
+- (IBAction)deleteGIF:(id)sender {
+    
+}
+
 #pragma mark - UIActionSheet Delegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {

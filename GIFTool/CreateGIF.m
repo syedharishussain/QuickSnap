@@ -28,7 +28,7 @@
     
     [SVProgressHUD showWithStatus:@"Creating GIF.."];
     
-    [Utils removeAllFilesFromNSTemporaryDirectory];
+//    [Utils removeAllFilesFromNSTemporaryDirectory];
     
     AVAsset *asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:path]];
     

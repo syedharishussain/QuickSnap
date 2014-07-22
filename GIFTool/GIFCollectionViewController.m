@@ -160,6 +160,9 @@
     documentsDirectory = NSTemporaryDirectory();
     NSString *tempPath = [documentsDirectory stringByAppendingFormat:@"/video.mp4"];
     
+    [Utils removeAllFilesFromNSTemporaryDirectory];
+
+    
     if ([videoData writeToFile:tempPath atomically:NO]) {
         NSLog(@"Video Written Successfully at: %@", tempPath);
         [create convertVideoToImages:tempPath];

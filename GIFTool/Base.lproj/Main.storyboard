@@ -26,7 +26,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="241" style="plain" systemItem="fixedSpace" id="xpN-Ea-eOU"/>
-                                    <barButtonItem systemItem="trash" id="sFz-WS-tE2"/>
+                                    <barButtonItem systemItem="trash" id="sFz-WS-tE2">
+                                        <connections>
+                                            <action selector="deleteGIF:" destination="QzB-Jt-Z9g" id="uci-u1-O9w"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -70,17 +74,6 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qXM-RL-I15">
-                                        <rect key="frame" x="265" y="62" width="49" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Logout">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logout:" destination="HIK-H3-1tg" eventType="touchUpInside" id="ek3-ir-38e"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.55294117649999996" green="0.69411764710000001" blue="0.85490196080000003" alpha="1" colorSpace="deviceRGB"/>
                             </view>
@@ -547,17 +540,6 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jzH-Af-wC7">
-                                        <rect key="frame" x="263" y="61" width="49" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Logout">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logout:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="epk-u7-0rA"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.55294117647058827" green="0.69411764705882351" blue="0.85490196078431369" alpha="1" colorSpace="deviceRGB"/>
                             </view>
@@ -573,7 +555,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="createGIF" destination="lrX-Hu-VQO" id="xgT-wJ-Kiz"/>
-                        <outlet property="logout" destination="jzH-Af-wC7" id="rwd-Dx-4ZH"/>
                         <segue destination="HIK-H3-1tg" kind="push" identifier="collection" id="kBh-1V-nnn"/>
                         <segue destination="gbO-fb-g1A" kind="modal" identifier="register" id="pMr-QY-qR0"/>
                     </connections>
@@ -634,7 +615,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TEB-R2-hO9"/>
-        <segue reference="ZkD-cM-JjA"/>
+        <segue reference="90I-Me-jdn"/>
+        <segue reference="96F-Ce-XsR"/>
     </inferredMetricsTieBreakers>
 </document>
