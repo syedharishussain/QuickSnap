@@ -121,6 +121,11 @@
                                 <rect key="frame" x="20" y="8" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="eEo-0e-0mg">
+                                <rect key="frame" x="60" y="30" width="240" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="progressTintColor" red="0.97254908084869385" green="0.17647059261798859" blue="0.21960785984992981" alpha="1" colorSpace="deviceRGB"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -135,6 +140,7 @@
                     <connections>
                         <outlet property="cameraButton" destination="YkY-5T-emX" id="aPG-xh-DM7"/>
                         <outlet property="collectionView" destination="1y4-67-p07" id="L6h-Ir-WPc"/>
+                        <outlet property="progressBar" destination="eEo-0e-0mg" id="IoS-0u-xFy"/>
                         <outlet property="spinner" destination="0WF-a6-QHC" id="Cx0-b3-OAv"/>
                         <outlet property="titleLabel" destination="nJH-Tl-9cn" id="zdN-O0-Euq"/>
                         <segue destination="QzB-Jt-Z9g" kind="push" identifier="showGIF" id="WX4-B1-C1P"/>
@@ -621,7 +627,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ZkD-cM-JjA"/>
         <segue reference="96F-Ce-XsR"/>
+        <segue reference="90I-Me-jdn"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -48,7 +48,7 @@
                       NSArray *array =responseObject[@"body"][@"list"];
                       [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                           File *file = [File objectWithDictionary:obj];
-                          [list setObject:file forKey:file.fileNameOriginal];
+                          [list setObject:file forKey:file.fileName];
                       }];
                       
                       [self setFiles:list];
@@ -110,11 +110,11 @@
                 
                 NSURL *fileURL = [documentsDirectoryURL URLByAppendingPathComponent:[fileNames allObjects][i]];
                 
-                File *newFile = [File objectWithDictionary:@{KEY_FILE_ORIGINAL_NAME:[fileNames allObjects][i]}];
+                File *newFile = [File objectWithDictionary:@{KEY_FILE_NAME: [fileNames allObjects][i]}];
                 
                 NSMutableDictionary *dic = self.files;
                 
-                [dic setObject:newFile forKey:newFile.fileNameOriginal];
+                [dic setObject:newFile forKey:newFile.fileName];
                 self.files = dic;
                 
                 [self uploadGIF:fileURL.relativePath];
@@ -158,13 +158,16 @@
     [self.downloadtasks addObject:downloadTask];
     
     [downloadTask resume];
-    
-    [manager setDownloadTaskDidWriteDataBlock:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-        NSLog(@"Downloading %@ - %lli / %lli",fileanme, totalBytesWritten , totalBytesExpectedToWrite);
-        if (totalBytesWritten == totalBytesExpectedToWrite) {
-            [self.downloadtasks removeObject:downloadTask];
-        }
+        [manager setDownloadTaskDidWriteDataBlock:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+            
+            [self.delegate downloadTask: (float)totalBytesWritten / (float)totalBytesExpectedToWrite];
+            
+//            NSLog(@"Downloading %@ - %lli / %lli",fileanme, totalBytesWritten , totalBytesExpectedToWrite);
+            if (totalBytesWritten == totalBytesExpectedToWrite) {
+                [self.downloadtasks removeObject:downloadTask];
+            }
     }];
+    
 }
 
 - (void)uploadGIF:(NSString*)path {
@@ -196,7 +199,22 @@
     [manager HTTPRequestOperationWithRequest:request
                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                          NSLog(@"Success %@", responseObject);
-                                         if (!isAllFilesDownloaded) [self getList];
+                                         
+                                         NSNumber * success = responseObject[@"header"][@"status"];
+                                         
+                                         if (success.boolValue) {
+                                             NSMutableDictionary *uploadedGIFs = self.files;
+                                             
+                                             File *newFile = [File objectWithDictionary:responseObject[@"body"][@"gif"]];
+                                             
+                                             [uploadedGIFs setObject:newFile forKey:newFile.fileName];
+                                             self.files = uploadedGIFs;
+                                             
+                                             if (!isAllFilesDownloaded) [self checkLocalFiles];
+                                         } else {
+                                             //                                             [Utils showAlertWithTitle:nil andMessage:responseObject[@"header"][@"message"]];
+                                         }
+                                         
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          NSLog(@"Failure %@", error.description);
                                      }];

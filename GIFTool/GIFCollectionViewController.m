@@ -63,10 +63,12 @@
     
     if (![GIFManager shared].isAllFilesDownloaded && self.isMySnaps) {
         self.spinner.hidden = NO;
+        self.progressBar.hidden = NO;
         [self.spinner startAnimating];
         [self.titleLabel setText:@"Downloading My Snaps"];
     } else {
         self.spinner.hidden = YES;
+        self.progressBar.hidden = YES;
         self.titleLabel.text = (self.isMySnaps) ? @"My GIFs" : @"All GIFs";
     }
 }
@@ -128,6 +130,19 @@
         [gifArray addObject:path];
         [self.collectionView reloadData];
     }
+}
+
+- (void)downloadTask:(float)percentage {
+    NSLog(@"Progress: %f , %f", percentage, self.progressBar.progress);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.progressBar.progress = percentage;
+    });
+    
+}
+
+- (void)updateProgressView:(float)progress {
+    [self.progressBar setProgress:progress];
 }
 
 #pragma mark - Record Video
@@ -221,10 +236,12 @@
         
         if (![GIFManager shared].isAllFilesDownloaded && self.isMySnaps) {
             self.spinner.hidden = NO;
+            self.progressBar.hidden = NO;
             [self.spinner startAnimating];
             [self.titleLabel setText:@"Downloading My Snaps"];
         } else {
             self.spinner.hidden = YES;
+            self.progressBar.hidden = YES;
             self.titleLabel.text = (self.isMySnaps) ? @"My GIFs" : @"All GIFs";
         }
     }

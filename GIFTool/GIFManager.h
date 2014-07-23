@@ -10,7 +10,9 @@
 
 @protocol GIFManagerProtocol <NSObject>
 
+@optional
 - (void)fileDownloaded;
+- (void)downloadTask:(float)percentage;
 
 @end
 
