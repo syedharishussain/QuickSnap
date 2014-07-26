@@ -22,6 +22,7 @@
 + (BOOL)NSStringIsEmpty:(NSString *)string;
 + (BOOL)NSStringIsValidEmail:(NSString *)string;
 + (void)showAlertWithTitle:(NSString *)title andMessage:(NSString *)message;
++ (UIImage*)watermarkImage:(UIImage *)image;
 
 + (NSString*)userID;
 + (void)setUserID:(NSString*)userID;

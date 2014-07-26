@@ -146,4 +146,17 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"fps"];
 }
 
++ (UIImage*)watermarkImage:(UIImage *)image {
+    UIImage *backgroundImage = image;
+    UIImage *watermarkImage = [UIImage imageNamed:@"icon_01.png"];
+    
+    UIGraphicsBeginImageContext(backgroundImage.size);
+    [backgroundImage drawInRect:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
+    [watermarkImage drawInRect:CGRectMake(backgroundImage.size.width - watermarkImage.size.width, backgroundImage.size.height - watermarkImage.size.height, watermarkImage.size.width, watermarkImage.size.height)];
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return result;
+}
+
 @end

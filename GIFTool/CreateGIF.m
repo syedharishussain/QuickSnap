@@ -67,7 +67,7 @@
             [UIImageJPEGRepresentation([UIImage imageWithCGImage:im], 0.5f) writeToFile:filePath atomically:YES];
             count++;
             [self performSelector:@selector(updateStatusWithFrame:) onThread:[NSThread mainThread] withObject:[NSString stringWithFormat:@"Processing %ld of %.0f",(long)count,totalFrames] waitUntilDone:NO];
-            [self.filePathArray addObject:[UIImage imageWithContentsOfFile:filePath]];
+            [self.filePathArray addObject:[Utils watermarkImage:[UIImage imageWithContentsOfFile:filePath]]];
             if (imageCount >= times.count) {
                 [self convertImageArrayToGIF:path];
             }
