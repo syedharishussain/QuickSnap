@@ -14,9 +14,9 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qTJ-tP-6bJ" customClass="OLImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="084-67-vdV">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="084-67-vdV">
                                 <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
@@ -27,6 +27,7 @@
                                     </barButtonItem>
                                     <barButtonItem width="241" style="plain" systemItem="fixedSpace" id="xpN-Ea-eOU"/>
                                     <barButtonItem systemItem="trash" id="sFz-WS-tE2">
+                                        <color key="tintColor" red="0.23921570181846619" green="0.48235297203063965" blue="0.98823535442352295" alpha="1" colorSpace="deviceRGB"/>
                                         <connections>
                                             <action selector="deleteGIF:" destination="QzB-Jt-Z9g" id="uci-u1-O9w"/>
                                         </connections>
@@ -34,9 +35,10 @@
                                 </items>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="U2K-Q9-h47"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="deleteOutlet" destination="sFz-WS-tE2" id="cqk-rf-1Ea"/>
