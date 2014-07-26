@@ -20,19 +20,66 @@
 
 @implementation ShowGIFViewController
 
+@synthesize toolBarHidden;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleNavigationBar:)];
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    tapGestureRecognizer.numberOfTouchesRequired = 1;
+    [self.imageView addGestureRecognizer:tapGestureRecognizer];
+    
+    [self.imageView setUserInteractionEnabled:YES];
     
     self.imageView.image = [OLImage imageWithData:[NSData dataWithContentsOfFile:self.imagePath]];
     
     UIImage *image = [UIImage imageNamed:@"icon_01"];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:image];
+    [self.toolbar setTranslucent:YES];
     
     if (!self.isMySnaps)
         [self.deleteOutlet setEnabled:NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self hideToolBar];
+}
+
+- (void)hideToolBar {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.3
+                         animations:^(void) {
+                             
+                             CGRect toolbarFrame = self.toolbar.frame;
+                             toolbarFrame.origin.y = self.view.bounds.size.height;
+                             self.toolbar.frame = toolbarFrame;
+                         }
+                         completion:^(BOOL finished) {
+                             toolBarHidden = YES;
+                         }];
+    });
+}
+
+- (void)showToolBar {
+     dispatch_async(dispatch_get_main_queue(), ^{
+    [UIView animateWithDuration:0.3
+                     animations:^(void) {
+                         
+                         CGRect toolbarFrame = self.toolbar.frame;
+                         toolbarFrame.origin.y = self.view.bounds.size.height - 44;
+                         self.toolbar.frame = toolbarFrame;
+                     }
+                     completion:^(BOOL finished) {
+                         toolBarHidden = NO;
+                     }];
+         });
 }
 
 - (IBAction)share:(id)sender {
@@ -45,7 +92,7 @@
 - (IBAction)deleteGIF:(id)sender {
     NSLog(@"%@", self.imagePath);
     [[GIFManager shared] deleteGIF:self.imagePath completionHandler:^{
-       [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }];
 }
 
@@ -145,6 +192,20 @@
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Tap gesture selector
+
+- (void)toggleNavigationBar:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    [self.navigationController setNavigationBarHidden:![self.navigationController isNavigationBarHidden] animated:YES];
+    //    [self.toolbar setHidden:!self.toolbar.hidden];
+    
+    if (toolBarHidden) {
+        [self showToolBar];
+    } else {
+        [self hideToolBar];
+    }
 }
 
 @end

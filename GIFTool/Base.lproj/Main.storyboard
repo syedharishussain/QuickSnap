@@ -9,15 +9,15 @@
             <objects>
                 <viewController id="QzB-Jt-Z9g" customClass="ShowGIFViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hhc-n5-gco">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qTJ-tP-6bJ" customClass="OLImageView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="084-67-vdV">
-                                <rect key="frame" x="0.0" y="372" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem systemItem="action" id="QHR-z5-cMU">
@@ -37,9 +37,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="U2K-Q9-h47"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="deleteOutlet" destination="sFz-WS-tE2" id="cqk-rf-1Ea"/>
                         <outlet property="imageView" destination="qTJ-tP-6bJ" id="vNm-QI-DO0"/>
+                        <outlet property="toolbar" destination="084-67-vdV" id="m1H-77-sSG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ME-Nv-KHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
