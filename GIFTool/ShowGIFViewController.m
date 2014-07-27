@@ -16,7 +16,7 @@
 #import <MessageUI/MessageUI.h>
 #import "GIFManager.h"
 
-@interface ShowGIFViewController () <UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
+@interface ShowGIFViewController () <UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate>
 
 @end
 
@@ -62,13 +62,17 @@
 }
 
 - (IBAction)deleteGIF:(id)sender {
-    NSLog(@"%@", self.imagePath);
-    [[GIFManager shared] deleteGIF:self.imagePath completionHandler:^{
-        if ([self.navigationController isNavigationBarHidden])
-            [self.navigationController setNavigationBarHidden:NO animated:YES];
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Delete QuickSnap"
+                                                        message:@"Are you sure you want to delete QuickSnap?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Delete",
+                              nil];
+    alertView.tag = 100;
+    [alertView show];
+    
+    
+    
 }
 
 
@@ -79,6 +83,31 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+}
+
+#pragma mark - UIAlertView Delete 
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:{
+            
+            break;
+        }
+        case 1:{ 
+            NSLog(@"%@", self.imagePath);
+            [[GIFManager shared] deleteGIF:self.imagePath completionHandler:^{
+                if ([self.navigationController isNavigationBarHidden])
+                    [self.navigationController setNavigationBarHidden:NO animated:YES];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            break;
+        }
+      
+        default:
+            break;
+    }
+
 }
 
 #pragma mark - UIActionSheet Delegate
