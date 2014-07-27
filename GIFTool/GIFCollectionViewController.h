@@ -14,6 +14,7 @@
 
 @property (nonatomic, retain) NSMutableArray *gifArray;
 @property (nonatomic, assign) BOOL isMySnaps;
+@property (nonatomic, retain) NSTimer *timer;
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UIButton *cameraButton;

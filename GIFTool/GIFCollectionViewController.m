@@ -123,13 +123,22 @@
 #pragma mark - GIFCreationProtocol
 
 - (void)GIFCreationComplete:(NSString *)path {
-    
     [[GIFManager shared] checkLocalFiles];
-    
     if (self.isMySnaps) {
         [gifArray addObject:path];
-        [self.collectionView reloadData];
+        [self performSelector:@selector(reloadCollectionView) withObject:nil afterDelay:1.0];
+       self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                         target:self
+                                       selector:@selector(reloadCollectionView)
+                                       userInfo:nil
+                                        repeats:YES];
+        [self.timer fire];
     }
+    [self.collectionView reloadData];
+}
+
+- (void)reloadCollectionView {
+    [self.collectionView reloadData];
 }
 
 - (void)downloadTask:(float)percentage {
@@ -236,6 +245,12 @@
         
         [self changeTitleMessageForDownlaoding];
     }
+}
+
+#pragma mark - dealloc
+
+- (void)dealloc {
+    [self.timer invalidate];
 }
 
 @end
