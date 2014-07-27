@@ -64,6 +64,9 @@
 - (IBAction)deleteGIF:(id)sender {
     NSLog(@"%@", self.imagePath);
     [[GIFManager shared] deleteGIF:self.imagePath completionHandler:^{
+        if ([self.navigationController isNavigationBarHidden])
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+        
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
@@ -179,7 +182,7 @@
         [tweetSheet setInitialText:@"GIF works on twitter?"];
         [tweetSheet addImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:self.imagePath]]];
         [tweetSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
-            NSLog(@"%ld", result);
+            NSLog(@"%d", result);
         }];
         
         [self presentViewController:tweetSheet animated:YES completion:nil];

@@ -61,7 +61,11 @@
         [self.collectionView reloadData];
     }
     
-    if (![GIFManager shared].isAllFilesDownloaded && self.isMySnaps) {
+    [self changeTitleMessageForDownlaoding];
+}
+
+- (void)changeTitleMessageForDownlaoding {
+    if (![GIFManager shared].isAllFilesDownloaded && self.isMySnaps && [GIFManager shared].downloadtasks.count) {
         self.spinner.hidden = NO;
         self.progressBar.hidden = NO;
         [self.spinner startAnimating];
@@ -71,10 +75,6 @@
         self.progressBar.hidden = YES;
         self.titleLabel.text = (self.isMySnaps) ? @"My GIFs" : @"All GIFs";
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
 }
 
 - (IBAction)createGIF:(id)sender {
@@ -234,16 +234,7 @@
         self.gifArray = [[Utils NSDocumentDirfiles] mutableCopy];
         [self.collectionView reloadData];
         
-        if (![GIFManager shared].isAllFilesDownloaded && self.isMySnaps) {
-            self.spinner.hidden = NO;
-            self.progressBar.hidden = NO;
-            [self.spinner startAnimating];
-            [self.titleLabel setText:@"Downloading My Snaps"];
-        } else {
-            self.spinner.hidden = YES;
-            self.progressBar.hidden = YES;
-            self.titleLabel.text = (self.isMySnaps) ? @"My GIFs" : @"All GIFs";
-        }
+        [self changeTitleMessageForDownlaoding];
     }
 }
 
