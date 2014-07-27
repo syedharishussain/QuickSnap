@@ -68,6 +68,8 @@
 		66964170192006F700017C73 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6696416F192006F700017C73 /* CoreMedia.framework */; };
 		66964172192006FF00017C73 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66964171192006FF00017C73 /* MediaPlayer.framework */; };
 		669641741920070500017C73 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669641731920070500017C73 /* QuartzCore.framework */; };
+		66AC201E1984704200649A93 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AC201D1984704200649A93 /* Twitter.framework */; };
+		66AC2020198470EE00649A93 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AC201F198470EE00649A93 /* Social.framework */; };
 		66C184CB1977116B00469A18 /* GIFManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C184CA1977116B00469A18 /* GIFManager.m */; };
 		66F20257197B416000A0217B /* basic-settings-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F20256197B416000A0217B /* basic-settings-icon.png */; };
 		66F2025A197B42B200A0217B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F20259197B42B200A0217B /* SettingsViewController.m */; };
@@ -174,6 +176,8 @@
 		6696416F192006F700017C73 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		66964171192006FF00017C73 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		669641731920070500017C73 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		66AC201D1984704200649A93 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		66AC201F198470EE00649A93 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		66C184C91977116B00469A18 /* GIFManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFManager.h; sourceTree = "<group>"; };
 		66C184CA1977116B00469A18 /* GIFManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFManager.m; sourceTree = "<group>"; };
 		66F20256197B416000A0217B /* basic-settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basic-settings-icon.png"; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66AC2020198470EE00649A93 /* Social.framework in Frameworks */,
+				66AC201E1984704200649A93 /* Twitter.framework in Frameworks */,
 				669641741920070500017C73 /* QuartzCore.framework in Frameworks */,
 				66964172192006FF00017C73 /* MediaPlayer.framework in Frameworks */,
 				66964170192006F700017C73 /* CoreMedia.framework in Frameworks */,
@@ -305,6 +311,8 @@
 		669640E8191FF73E00017C73 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66AC201F198470EE00649A93 /* Social.framework */,
+				66AC201D1984704200649A93 /* Twitter.framework */,
 				669641731920070500017C73 /* QuartzCore.framework */,
 				66964171192006FF00017C73 /* MediaPlayer.framework */,
 				6696416F192006F700017C73 /* CoreMedia.framework */,

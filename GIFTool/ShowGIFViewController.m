@@ -7,11 +7,13 @@
 //
 
 #import "ShowGIFViewController.h"
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <Social/Social.h>
+#import <Twitter/Twitter.h>
 #import "OLImageView.h"
 #import "Utils.h"
 #import "OLImage.h"
 #import <MessageUI/MessageUI.h>
-#import <MobileCoreServices/MobileCoreServices.h>
 #import "GIFManager.h"
 
 @interface ShowGIFViewController () <UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
@@ -53,7 +55,9 @@
 - (IBAction)share:(id)sender {
     UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"share QuickSnap"
                                                              delegate:self
-                                                    cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Email", @"iMessage", nil];
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Email", @"iMessage", nil];
     [actionsheet showInView:self.view];
 }
 
@@ -86,6 +90,10 @@
             [self sendMMS:nil];
             break;
         }
+//        case 2:{ //Twitter
+//            [self shareOnTwitter];
+//            break;
+//        }
         case 2:{ // cancel
             
             break;
@@ -160,6 +168,32 @@
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Share on Twitter
+
+- (void)shareOnTwitter {
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [tweetSheet setInitialText:@"GIF works on twitter?"];
+        [tweetSheet addImage:[UIImage imageWithData:[NSData dataWithContentsOfFile:self.imagePath]]];
+        [tweetSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
+            NSLog(@"%ld", result);
+        }];
+        
+        [self presentViewController:tweetSheet animated:YES completion:nil];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Sorry"
+                                  message:@"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup"
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }
 }
 
 #pragma mark - Tap gesture selector
