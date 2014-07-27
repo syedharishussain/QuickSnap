@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "Utils.h"
 #import "CreateGIF.h"
+#import "ViewController.h"
 
 @interface SettingsViewController ()
 
@@ -24,6 +25,11 @@
     // Do any additional setup after loading the view.
     UIImage *image = [UIImage imageNamed:@"icon_01"];
     [self.navigationController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:image]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveLoginNotification:)
+                                                 name:@"loginNotification"
+                                               object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -89,4 +95,33 @@
     
     [Utils setFPS:dic];
 }
+
+#pragma mark - notification 
+
+- (void) receiveLoginNotification:(NSNotification *) notification
+{
+    // [notification name] should always be @"TestNotification"
+    // unless you use this method for observation of other notifications
+    // as well.
+    
+    if ([[notification name] isEqualToString:@"loginNotification"]){
+        NSLog (@"Successfully received the test notification!");
+        [self.navigationController.viewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([obj isKindOfClass:[ViewController class]]) {
+                [self.navigationController popToViewController:obj animated:YES];
+            }
+        }];
+    }
+}
+
+#pragma mark - dealloc
+
+- (void) dealloc
+{
+    // If you don't remove yourself as an observer, the Notification Center
+    // will continue to try and send notification objects to the deallocated
+    // object.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 @end

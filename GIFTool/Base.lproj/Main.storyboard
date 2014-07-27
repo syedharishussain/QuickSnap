@@ -266,7 +266,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jvC-JU-kEa">
                                 <rect key="frame" x="20" y="359" width="280" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Logout" backgroundImage="logout.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -631,7 +631,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="96F-Ce-XsR"/>
-        <segue reference="90I-Me-jdn"/>
+        <segue reference="ZkD-cM-JjA"/>
+        <segue reference="TEB-R2-hO9"/>
     </inferredMetricsTieBreakers>
 </document>

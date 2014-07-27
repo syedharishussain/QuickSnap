@@ -68,7 +68,11 @@
                   
                   [[GIFManager shared] getList];
                   
-                  [self dismissViewControllerAnimated:YES completion:nil];
+                  [self dismissViewControllerAnimated:YES completion:^{
+                      [[NSNotificationCenter defaultCenter]
+                       postNotificationName:@"loginNotification"
+                       object:self];
+                  }];
               } else {
                   [Utils showAlertWithTitle:nil andMessage:responseObject[@"header"][@"message"]];
               }
