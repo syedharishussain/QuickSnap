@@ -92,9 +92,9 @@
 
 - (void)convertImageArrayToGIF:(NSString*)videoPath {
     NSLog(@"---------GIF CREATION STARTED----------");
-    [SVProgressHUD showWithStatus:@"Creating GIF.."];
+//    [SVProgressHUD showWithStatus:@"Creating GIF.."];
     [HJImagesToGIF saveGIFToPhotoAlbumFromImages:self.filePathArray success:^(NSString *filePath) {
-        [SVProgressHUD dismiss];
+//        [SVProgressHUD dismiss];
         self.data = [NSData dataWithContentsOfFile:filePath];
         self.videoPath = videoPath;
         
