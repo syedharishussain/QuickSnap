@@ -47,9 +47,9 @@
     
     if (![Utils FPS]) {
         [Utils setFPS:@{
-                        KEY_FPS         : @15,
-                        KEY_SEGMENT     : @2,
-                        KEY_INCREMENT   : @2
+                        KEY_FPS         : @10,
+                        KEY_SEGMENT     : @1,
+                        KEY_INCREMENT   : @3
                         }];
     }
 
