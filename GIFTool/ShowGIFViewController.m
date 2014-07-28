@@ -69,10 +69,7 @@
                                               otherButtonTitles:@"Delete",
                               nil];
     alertView.tag = 100;
-    [alertView show];
-    
-    
-    
+    [alertView show];    
 }
 
 
