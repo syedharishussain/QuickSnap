@@ -10,11 +10,11 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <Social/Social.h>
 #import <Twitter/Twitter.h>
-#import "OLImageView.h"
 #import "Utils.h"
-#import "OLImage.h"
 #import <MessageUI/MessageUI.h>
 #import "GIFManager.h"
+#import "FLAnimatedImage.h"
+#import "FLAnimatedImageView.h"
 
 @interface ShowGIFViewController () <UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate>
 
@@ -36,8 +36,9 @@
     
     [self.imageView setUserInteractionEnabled:YES];
     
-    self.imageView.image = [OLImage imageWithData:[NSData dataWithContentsOfFile:self.imagePath]];
-    
+    FLAnimatedImage *animatedImage = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:self.imagePath]];
+    self.imageView.animatedImage = animatedImage;
+
     UIImage *image = [UIImage imageNamed:@"icon_01"];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:image];

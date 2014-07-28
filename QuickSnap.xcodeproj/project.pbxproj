@@ -55,8 +55,6 @@
 		6696410B191FF73E00017C73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669640ED191FF73E00017C73 /* UIKit.framework */; };
 		66964113191FF73E00017C73 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 66964111191FF73E00017C73 /* InfoPlist.strings */; };
 		66964115191FF73E00017C73 /* GIFToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66964114191FF73E00017C73 /* GIFToolTests.m */; };
-		66964156191FF8CC00017C73 /* OLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 66964140191FF8CC00017C73 /* OLImage.m */; };
-		66964157191FF8CC00017C73 /* OLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66964142191FF8CC00017C73 /* OLImageView.m */; };
 		6696415C191FF8DE00017C73 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6696415B191FF8DE00017C73 /* ImageIO.framework */; };
 		6696415E191FF8E400017C73 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6696415D191FF8E400017C73 /* CoreImage.framework */; };
 		66964160191FF8EA00017C73 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6696415F191FF8EA00017C73 /* SystemConfiguration.framework */; };
@@ -68,6 +66,8 @@
 		66964170192006F700017C73 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6696416F192006F700017C73 /* CoreMedia.framework */; };
 		66964172192006FF00017C73 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66964171192006FF00017C73 /* MediaPlayer.framework */; };
 		669641741920070500017C73 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669641731920070500017C73 /* QuartzCore.framework */; };
+		66A638911986BE0F00D0A3DF /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A6388E1986BE0F00D0A3DF /* FLAnimatedImage.m */; };
+		66A638921986BE0F00D0A3DF /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A638901986BE0F00D0A3DF /* FLAnimatedImageView.m */; };
 		66AC201E1984704200649A93 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AC201D1984704200649A93 /* Twitter.framework */; };
 		66AC2020198470EE00649A93 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AC201F198470EE00649A93 /* Social.framework */; };
 		66C184CB1977116B00469A18 /* GIFManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C184CA1977116B00469A18 /* GIFManager.m */; };
@@ -161,10 +161,6 @@
 		66964110191FF73E00017C73 /* QuickSnapTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QuickSnapTests-Info.plist"; sourceTree = "<group>"; };
 		66964112191FF73E00017C73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		66964114191FF73E00017C73 /* GIFToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GIFToolTests.m; sourceTree = "<group>"; };
-		6696413F191FF8CC00017C73 /* OLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImage.h; sourceTree = "<group>"; };
-		66964140191FF8CC00017C73 /* OLImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLImage.m; sourceTree = "<group>"; };
-		66964141191FF8CC00017C73 /* OLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImageView.h; sourceTree = "<group>"; };
-		66964142191FF8CC00017C73 /* OLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLImageView.m; sourceTree = "<group>"; };
 		6696415B191FF8DE00017C73 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		6696415D191FF8E400017C73 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		6696415F191FF8EA00017C73 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -176,6 +172,10 @@
 		6696416F192006F700017C73 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		66964171192006FF00017C73 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		669641731920070500017C73 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		66A6388D1986BE0F00D0A3DF /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		66A6388E1986BE0F00D0A3DF /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		66A6388F1986BE0F00D0A3DF /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		66A638901986BE0F00D0A3DF /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
 		66AC201D1984704200649A93 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		66AC201F198470EE00649A93 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		66C184C91977116B00469A18 /* GIFManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFManager.h; sourceTree = "<group>"; };
@@ -399,24 +399,13 @@
 		66964123191FF8CC00017C73 /* ThirdpartyLibs */ = {
 			isa = PBXGroup;
 			children = (
+				66A6388C1986BE0F00D0A3DF /* FLAnimatedImage */,
 				660DC0CD196F2C2B0070140C /* AFNetworking */,
 				6632E3971930495E00D9CFFA /* SVProgressHUD */,
 				6648084C192FFD79008EC3D6 /* HJImagesToGIF.h */,
 				6648084D192FFD79008EC3D6 /* HJImagesToGIF.m */,
-				6696413B191FF8CC00017C73 /* OLImageView */,
 			);
 			path = ThirdpartyLibs;
-			sourceTree = "<group>";
-		};
-		6696413B191FF8CC00017C73 /* OLImageView */ = {
-			isa = PBXGroup;
-			children = (
-				6696413F191FF8CC00017C73 /* OLImage.h */,
-				66964140191FF8CC00017C73 /* OLImage.m */,
-				66964141191FF8CC00017C73 /* OLImageView.h */,
-				66964142191FF8CC00017C73 /* OLImageView.m */,
-			);
-			path = OLImageView;
 			sourceTree = "<group>";
 		};
 		66964166191FFB0400017C73 /* GIFs */ = {
@@ -426,6 +415,17 @@
 				66964168191FFB0400017C73 /* 2.gif */,
 			);
 			path = GIFs;
+			sourceTree = "<group>";
+		};
+		66A6388C1986BE0F00D0A3DF /* FLAnimatedImage */ = {
+			isa = PBXGroup;
+			children = (
+				66A6388D1986BE0F00D0A3DF /* FLAnimatedImage.h */,
+				66A6388E1986BE0F00D0A3DF /* FLAnimatedImage.m */,
+				66A6388F1986BE0F00D0A3DF /* FLAnimatedImageView.h */,
+				66A638901986BE0F00D0A3DF /* FLAnimatedImageView.m */,
+			);
+			path = FLAnimatedImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -547,14 +547,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66964157191FF8CC00017C73 /* OLImageView.m in Sources */,
 				6632E3901930356C00D9CFFA /* Utils.m in Sources */,
 				660DC0C6196F22730070140C /* LoginViewController.m in Sources */,
 				660DC0E3196F2C2C0070140C /* AFHTTPSessionManager.m in Sources */,
 				66964100191FF73E00017C73 /* ViewController.m in Sources */,
 				660DC0E4196F2C2C0070140C /* AFNetworkReachabilityManager.m in Sources */,
 				660DC0E1196F2C2C0070140C /* AFHTTPRequestOperation.m in Sources */,
+				66A638921986BE0F00D0A3DF /* FLAnimatedImageView.m in Sources */,
 				660DC0E7196F2C2C0070140C /* AFURLRequestSerialization.m in Sources */,
+				66A638911986BE0F00D0A3DF /* FLAnimatedImage.m in Sources */,
 				660DC0E6196F2C2C0070140C /* AFURLConnectionOperation.m in Sources */,
 				660DC0E9196F2C2C0070140C /* AFURLSessionManager.m in Sources */,
 				6648084E192FFD79008EC3D6 /* HJImagesToGIF.m in Sources */,
@@ -562,7 +563,6 @@
 				6632E39D1930495E00D9CFFA /* SVProgressHUD.m in Sources */,
 				66572EF1195B67E500C10597 /* ShowGIFViewController.m in Sources */,
 				660DC0CC196F22850070140C /* RenewPasswordViewController.m in Sources */,
-				66964156191FF8CC00017C73 /* OLImage.m in Sources */,
 				660DC0C3196F226D0070140C /* RegisterViewController.m in Sources */,
 				66572EEE195B614800C10597 /* GIFCollectionViewController.m in Sources */,
 				66572EF4195B6B0E00C10597 /* CreateGIF.m in Sources */,

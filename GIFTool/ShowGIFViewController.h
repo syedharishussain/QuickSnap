@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class OLImageView;
+@class FLAnimatedImageView;
 
 @interface ShowGIFViewController : UIViewController
 
@@ -16,7 +16,7 @@
 @property (nonatomic, assign) BOOL toolBarHidden;
 @property (nonatomic, retain) NSString *imagePath;
 
-@property (strong, nonatomic) IBOutlet OLImageView *imageView;
+@property (strong, nonatomic) IBOutlet FLAnimatedImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteOutlet;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
