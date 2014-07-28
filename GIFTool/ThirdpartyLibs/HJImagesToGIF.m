@@ -57,8 +57,9 @@
         NSLog(@"animated GIF file created at %@", path);
     }else{
         NSLog(@"error: no animated GIF file created at %@", path);
-    }
+    }    
 }
+
 +(void)saveGIFToPhotoAlbumFromImages:(NSArray*)images WithCallbackBlock:(void (^)(void))callbackBlock{
     NSString *docDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *tempPath = [docDir stringByAppendingPathComponent:
@@ -96,7 +97,10 @@
     
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     
-    NSData *data = [NSData dataWithContentsOfFile:tempPath];
+    NSMutableData *gifData = [NSMutableData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"1.gif" ofType:nil]];
+    NSMutableData *data = [NSMutableData dataWithContentsOfFile:tempPath];
+    NSMutableData *gif89 = [NSMutableData dataWithData:[gifData subdataWithRange:NSMakeRange(0, 6)]];
+    [data replaceBytesInRange:NSMakeRange(0, 6) withBytes:gif89.bytes];
     
     [library writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
         if (error) {

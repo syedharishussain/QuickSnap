@@ -66,7 +66,7 @@
             NSString *docDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
             docDir = NSTemporaryDirectory();
             NSString *filePath = [docDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%f.jpg",CMTimeGetSeconds(requestedTime)]];
-            [UIImageJPEGRepresentation([UIImage imageWithCGImage:im], 0.5f) writeToFile:filePath atomically:YES];
+            [UIImagePNGRepresentation([UIImage imageWithCGImage:im]) writeToFile:filePath atomically:YES];
             count++;
             [self performSelector:@selector(updateStatusWithFrame:) onThread:[NSThread mainThread] withObject:[NSString stringWithFormat:@"Processing %ld of %.0f",(long)count,totalFrames] waitUntilDone:NO];
             [self.filePathArray addObject:[Utils watermarkImage:[UIImage imageWithContentsOfFile:filePath]]];

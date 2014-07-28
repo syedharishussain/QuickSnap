@@ -57,7 +57,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Email", @"iMessage", @"twitter", nil];
+                                                    otherButtonTitles:@"Email", @"iMessage", nil]; //@"twitter", nil];
     [actionsheet showInView:self.view];
 }
 
@@ -122,11 +122,11 @@
             [self sendMMS:nil];
             break;
         }
-        case 2:{ //Twitter
-            [self shareOnTwitter];
-            break;
-        }
-        case 3:{ // cancel
+//        case 2:{ //Twitter
+//            [self shareOnTwitter];
+//            break;
+//        }
+        case 2:{ // cancel
             
             break;
         }
@@ -211,7 +211,7 @@
         [tweetSheet setInitialText:@"GIF works on twitter?"];
         [tweetSheet addImage:[UIImage imageWithContentsOfFile:self.imagePath]];
         [tweetSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
-            NSLog(@"%d", result);
+            
         }];
         
         [self presentViewController:tweetSheet animated:YES completion:nil];
