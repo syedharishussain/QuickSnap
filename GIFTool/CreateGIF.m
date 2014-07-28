@@ -19,8 +19,6 @@
 #import "SVProgressHUD.h"
 #import "GIFManager.h"
 
-#import "YAPGif.h"
-
 @implementation CreateGIF
 
 @synthesize generator, composition;

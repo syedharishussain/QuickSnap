@@ -251,6 +251,10 @@
 
 - (void)dealloc {
     [self.timer invalidate];
+    [GIFManager shared].delegate = nil;
+    create.delegate = nil;
+    gifArray = nil;
+    
 }
 
 @end

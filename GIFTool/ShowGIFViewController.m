@@ -69,7 +69,7 @@
                                               otherButtonTitles:@"Delete",
                               nil];
     alertView.tag = 100;
-    [alertView show];    
+    [alertView show];
 }
 
 
@@ -230,6 +230,12 @@
 - (void)toggleNavigationBar:(UITapGestureRecognizer *)tapGestureRecognizer {
     [self.navigationController setNavigationBarHidden:![self.navigationController isNavigationBarHidden] animated:YES];
 
+}
+
+#pragma mark - dealloc
+
+- (void)dealloc {
+    self.imageView = nil;
 }
 
 @end

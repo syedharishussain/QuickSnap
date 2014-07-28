@@ -68,7 +68,6 @@
 		66964170192006F700017C73 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6696416F192006F700017C73 /* CoreMedia.framework */; };
 		66964172192006FF00017C73 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66964171192006FF00017C73 /* MediaPlayer.framework */; };
 		669641741920070500017C73 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669641731920070500017C73 /* QuartzCore.framework */; };
-		66ABE78D1985A9E4008D83B5 /* YAPGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ABE78C1985A9E4008D83B5 /* YAPGif.m */; };
 		66AC201E1984704200649A93 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AC201D1984704200649A93 /* Twitter.framework */; };
 		66AC2020198470EE00649A93 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AC201F198470EE00649A93 /* Social.framework */; };
 		66C184CB1977116B00469A18 /* GIFManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C184CA1977116B00469A18 /* GIFManager.m */; };
@@ -177,9 +176,6 @@
 		6696416F192006F700017C73 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		66964171192006FF00017C73 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		669641731920070500017C73 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		66ABE78A1985A9E4008D83B5 /* YAPGif-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YAPGif-Prefix.pch"; sourceTree = "<group>"; };
-		66ABE78B1985A9E4008D83B5 /* YAPGif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAPGif.h; sourceTree = "<group>"; };
-		66ABE78C1985A9E4008D83B5 /* YAPGif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAPGif.m; sourceTree = "<group>"; };
 		66AC201D1984704200649A93 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		66AC201F198470EE00649A93 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		66C184C91977116B00469A18 /* GIFManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFManager.h; sourceTree = "<group>"; };
@@ -403,7 +399,6 @@
 		66964123191FF8CC00017C73 /* ThirdpartyLibs */ = {
 			isa = PBXGroup;
 			children = (
-				66ABE7891985A9E4008D83B5 /* YAPGif */,
 				660DC0CD196F2C2B0070140C /* AFNetworking */,
 				6632E3971930495E00D9CFFA /* SVProgressHUD */,
 				6648084C192FFD79008EC3D6 /* HJImagesToGIF.h */,
@@ -431,16 +426,6 @@
 				66964168191FFB0400017C73 /* 2.gif */,
 			);
 			path = GIFs;
-			sourceTree = "<group>";
-		};
-		66ABE7891985A9E4008D83B5 /* YAPGif */ = {
-			isa = PBXGroup;
-			children = (
-				66ABE78A1985A9E4008D83B5 /* YAPGif-Prefix.pch */,
-				66ABE78B1985A9E4008D83B5 /* YAPGif.h */,
-				66ABE78C1985A9E4008D83B5 /* YAPGif.m */,
-			);
-			path = YAPGif;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -570,7 +555,6 @@
 				660DC0E4196F2C2C0070140C /* AFNetworkReachabilityManager.m in Sources */,
 				660DC0E1196F2C2C0070140C /* AFHTTPRequestOperation.m in Sources */,
 				660DC0E7196F2C2C0070140C /* AFURLRequestSerialization.m in Sources */,
-				66ABE78D1985A9E4008D83B5 /* YAPGif.m in Sources */,
 				660DC0E6196F2C2C0070140C /* AFURLConnectionOperation.m in Sources */,
 				660DC0E9196F2C2C0070140C /* AFURLSessionManager.m in Sources */,
 				6648084E192FFD79008EC3D6 /* HJImagesToGIF.m in Sources */,
