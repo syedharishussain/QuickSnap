@@ -21,14 +21,19 @@
     float delayFactor = ((NSNumber*)[Utils FPS][KEY_FPS]).floatValue;
     
     float delay = 1.0/delayFactor;
-
-    NSDictionary *prep = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:delay] forKey:(NSString *) kCGImagePropertyGIFDelayTime] forKey:(NSString *) kCGImagePropertyGIFDictionary];
+    delay = [[NSString stringWithFormat:@"%.2f",delay]floatValue];
     
-//    static NSUInteger kFrameCount = 16;
+    NSDictionary *prep = @{
+                           (__bridge id)kCGImagePropertyGIFDictionary: @{
+                                   (__bridge id)kCGImagePropertyGIFDelayTime: @(delay) // a float (not double!) in seconds, rounded to centiseconds in the GIF data
+                                   }
+                           };
+    
+    //    static NSUInteger kFrameCount = 16;
     
     NSDictionary *fileProperties = @{
                                      (__bridge id)kCGImagePropertyGIFDictionary: @{
-                                             (__bridge id)kCGImagePropertyGIFLoopCount: @0, // 0 means loop forever
+                                             (__bridge id)kCGImagePropertyGIFLoopCount: @0 // 0 means loop forever
                                              }
                                      };
     
@@ -39,10 +44,10 @@
     
     for (int i=0;i<[images count];i++)
     {
-        //load anImage from array
-        UIImage * anImage = [images objectAtIndex:i];
-        
-        CGImageDestinationAddImage(dst, anImage.CGImage,(__bridge CFDictionaryRef)(prep));
+            //load anImage from array
+            UIImage * anImage = [images objectAtIndex:i];
+            
+            CGImageDestinationAddImage(dst, anImage.CGImage,(__bridge CFDictionaryRef)prep);
         
     }
     
@@ -57,14 +62,14 @@
 +(void)saveGIFToPhotoAlbumFromImages:(NSArray*)images WithCallbackBlock:(void (^)(void))callbackBlock{
     NSString *docDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *tempPath = [docDir stringByAppendingPathComponent:
-                          [NSString stringWithFormat:@"hj_temp.gif"]];
-
+                          [NSString stringWithFormat:@"hj_temp.GIF"]];
+    
     [HJImagesToGIF saveGIFFromImages:images toPath:tempPath WithCallbackBlock:callbackBlock];
-//    UIImage * gif_image = [UIImage imageWithContentsOfFile:tempPath];
-//    UIImageWriteToSavedPhotosAlbum(gif_image, self, nil, nil);
+    //    UIImage * gif_image = [UIImage imageWithContentsOfFile:tempPath];
+    //    UIImageWriteToSavedPhotosAlbum(gif_image, self, nil, nil);
     
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-
+    
     
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:tempPath]];
     data = [NSData dataWithContentsOfFile:tempPath];
@@ -81,9 +86,9 @@
 
 + (void)saveGIFToPhotoAlbumFromImages:(NSArray *)images success:(void (^)(NSString *filePath))success {
     NSString *docDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-
+    
     NSString *tempPath = [docDir stringByAppendingPathComponent:
-                          [Utils generateFileNameWithExtension:@".gif"]];
+                          [Utils generateFileNameWithExtension:@".GIF"]];
     
     [HJImagesToGIF saveGIFFromImages:images toPath:tempPath WithCallbackBlock:^{
         
@@ -92,7 +97,7 @@
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     
     NSData *data = [NSData dataWithContentsOfFile:tempPath];
-
+    
     [library writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
         if (error) {
             NSLog(@"Error Saving GIF to Photo Album: %@", error);
