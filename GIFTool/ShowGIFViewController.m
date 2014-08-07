@@ -58,7 +58,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Email", @"iMessage", nil]; //@"twitter", nil];
+                                                    otherButtonTitles:@"Email", @"iMessage", @"Export to Photo Album",nil]; //@"twitter", nil];
     [actionsheet showInView:self.view];
 }
 
@@ -120,12 +120,12 @@
             [self sendMMS:nil];
             break;
         }
-//        case 2:{ //Twitter
-//            [self shareOnTwitter];
-//            break;
-//        }
-        case 2:{ // cancel
-            
+        case 2:{ //Export to photo album
+            [self shareOnTwitter];
+            break;
+        }
+        case 3:{ // cancel
+            [Utils saveToPhotoAlbum:self.imagePath];
             break;
         }
         default:
