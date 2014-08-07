@@ -121,11 +121,11 @@
             break;
         }
         case 2:{ //Export to photo album
-            [self shareOnTwitter];
+            [Utils saveToPhotoAlbum:self.imagePath];
             break;
         }
         case 3:{ // cancel
-            [Utils saveToPhotoAlbum:self.imagePath];
+            
             break;
         }
         default:

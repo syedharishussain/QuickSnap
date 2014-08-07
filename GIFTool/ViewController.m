@@ -52,7 +52,7 @@
                         KEY_INCREMENT   : @3
                         }];
     }
-
+    
     UIImage *image = [UIImage imageNamed:@"icon_01"];
     [self.navigationController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:image]];
     
@@ -61,15 +61,16 @@
         //show alert for asking the user to give permission
         ALAssetsLibrary *lib = [[ALAssetsLibrary alloc] init];
         
-        [lib enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-            NSLog(@"%li",(long)[group numberOfAssets]);
-        } failureBlock:^(NSError *error) {
-            if (error.code == ALAssetsLibraryAccessUserDeniedError) {
-                NSLog(@"user denied access, code: %li",(long)error.code);
-            }else{
-                NSLog(@"Other error code: %li",(long)error.code);
-            }
-        }];
+        [lib enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
+                           usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                               NSLog(@"%li",(long)[group numberOfAssets]);                               
+                           } failureBlock:^(NSError *error) {
+                               if (error.code == ALAssetsLibraryAccessUserDeniedError) {
+                                   NSLog(@"user denied access, code: %li",(long)error.code);
+                               }else{
+                                   NSLog(@"Other error code: %li",(long)error.code);
+                               }
+                           }];
     }
 }
 
@@ -79,7 +80,7 @@
     if (![Utils isLoggedIn]) {
         [self performSegueWithIdentifier:@"register" sender:nil];
     } else {
-//        [[GIFManager shared] checkLocalFiles];
+        //        [[GIFManager shared] checkLocalFiles];
     }
 }
 

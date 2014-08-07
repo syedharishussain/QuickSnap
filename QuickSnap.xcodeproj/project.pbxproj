@@ -41,6 +41,7 @@
 		66572EEE195B614800C10597 /* GIFCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66572EED195B614800C10597 /* GIFCollectionViewController.m */; };
 		66572EF1195B67E500C10597 /* ShowGIFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66572EF0195B67E500C10597 /* ShowGIFViewController.m */; };
 		66572EF4195B6B0E00C10597 /* CreateGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 66572EF3195B6B0E00C10597 /* CreateGIF.m */; };
+		668F49F11994087D0094E356 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 668F49F01994087D0094E356 /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
 		669640EA191FF73E00017C73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669640E9191FF73E00017C73 /* Foundation.framework */; };
 		669640EC191FF73E00017C73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669640EB191FF73E00017C73 /* CoreGraphics.framework */; };
 		669640EE191FF73E00017C73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669640ED191FF73E00017C73 /* UIKit.framework */; };
@@ -142,6 +143,8 @@
 		66572EF0195B67E500C10597 /* ShowGIFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowGIFViewController.m; sourceTree = "<group>"; };
 		66572EF2195B6B0E00C10597 /* CreateGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGIF.h; sourceTree = "<group>"; };
 		66572EF3195B6B0E00C10597 /* CreateGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGIF.m; sourceTree = "<group>"; };
+		668F49EF1994087D0094E356 /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
+		668F49F01994087D0094E356 /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
 		669640E6191FF73E00017C73 /* QuickSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		669640E9191FF73E00017C73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		669640EB191FF73E00017C73 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -289,6 +292,15 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		668F49EE1994087D0094E356 /* ALAssetsLibrary-CustomPhotoAlbum */ = {
+			isa = PBXGroup;
+			children = (
+				668F49EF1994087D0094E356 /* ALAssetsLibrary+CustomPhotoAlbum.h */,
+				668F49F01994087D0094E356 /* ALAssetsLibrary+CustomPhotoAlbum.m */,
+			);
+			path = "ALAssetsLibrary-CustomPhotoAlbum";
+			sourceTree = "<group>";
+		};
 		669640DD191FF73E00017C73 = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +411,7 @@
 		66964123191FF8CC00017C73 /* ThirdpartyLibs */ = {
 			isa = PBXGroup;
 			children = (
+				668F49EE1994087D0094E356 /* ALAssetsLibrary-CustomPhotoAlbum */,
 				66A6388C1986BE0F00D0A3DF /* FLAnimatedImage */,
 				660DC0CD196F2C2B0070140C /* AFNetworking */,
 				6632E3971930495E00D9CFFA /* SVProgressHUD */,
@@ -564,6 +577,7 @@
 				66572EF1195B67E500C10597 /* ShowGIFViewController.m in Sources */,
 				660DC0CC196F22850070140C /* RenewPasswordViewController.m in Sources */,
 				660DC0C3196F226D0070140C /* RegisterViewController.m in Sources */,
+				668F49F11994087D0094E356 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				66572EEE195B614800C10597 /* GIFCollectionViewController.m in Sources */,
 				66572EF4195B6B0E00C10597 /* CreateGIF.m in Sources */,
 				669640FA191FF73E00017C73 /* AppDelegate.m in Sources */,

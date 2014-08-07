@@ -10,6 +10,7 @@
 #import "GIFManager.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
+#import "ALAssetsLibrary+CustomPhotoAlbum.h"
 
 @implementation Utils
 
@@ -118,21 +119,29 @@
 }
 
 + (void)saveToPhotoAlbum:(NSString*)path {
-        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-        
+    
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    
         NSMutableData *gifData = [NSMutableData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"1.gif" ofType:nil]];
         NSMutableData *data = [NSMutableData dataWithContentsOfFile:path];
         NSMutableData *gif89 = [NSMutableData dataWithData:[gifData subdataWithRange:NSMakeRange(0, 6)]];
         [data replaceBytesInRange:NSMakeRange(0, 6) withBytes:gif89.bytes];
         
-        [library writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
-            if (error) {
-                NSLog(@"Error Saving GIF to Photo Album: %@", error);
-            } else {
-                // TODO: success handling
-                NSLog(@"GIF Saved to %@", assetURL);
-            }
-        }];
+//        [library writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
+//            if (error) {
+//                NSLog(@"Error Saving GIF to Photo Album: %@", error);
+//            } else {
+//                // TODO: success handling
+//                NSLog(@"GIF Saved to %@", assetURL);
+//            }
+//        }];
+    
+    [library saveImageData:data toAlbum:@"QuickSnap" metadata:nil completion:^(NSURL *assetURL, NSError *error) {
+        NSLog(@"GIF Saved to %@", assetURL);
+    } failure:^(NSError *error) {
+         NSLog(@"Error Saving GIF to Photo Album: %@", error);
+    }];
+    
 }
 
 + (NSString*)userID {

@@ -51,6 +51,15 @@
     create.delegate = self;
     
     [GIFManager shared].delegate = self;
+    
+    ALAssetsLibrary* libraryFolder = [[ALAssetsLibrary alloc] init];
+    [libraryFolder addAssetsGroupAlbumWithName:@"QuickSnap" resultBlock:^(ALAssetsGroup *group)
+     {
+         NSLog(@"Adding Folder:'My Album', success: %s", group.editable ? "Success" : "Already created: Not Success");
+     } failureBlock:^(NSError *error)
+     {
+         NSLog(@"Error: Adding on Folder");
+     }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
