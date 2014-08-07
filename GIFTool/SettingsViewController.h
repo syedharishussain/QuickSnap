@@ -13,9 +13,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *fpsLabel;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedController;
+@property (weak, nonatomic) IBOutlet UISwitch *saveGIFSwitch;
 
 - (IBAction)sliderValueChange:(id)sender;
 - (IBAction)logout:(id)sender;
 - (IBAction)segmentedControllerValueChange:(id)sender;
+- (IBAction)switchValueChanged:(id)sender;
 
 @end

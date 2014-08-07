@@ -37,6 +37,8 @@
     
     if ([Utils FPS][KEY_SEGMENT])
         segmentedController.selectedSegmentIndex = ((NSNumber*)[Utils FPS][KEY_SEGMENT]).integerValue;
+    
+    [self.saveGIFSwitch setOn:[Utils shouldSaveToPhotoAlbum]];
 }
 
 /*
@@ -94,6 +96,10 @@
     }
     
     [Utils setFPS:dic];
+}
+
+- (IBAction)switchValueChanged:(id)sender {
+    [Utils setSaveToPhotoAlbum:self.saveGIFSwitch.isOn];
 }
 
 #pragma mark - notification 

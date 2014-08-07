@@ -34,7 +34,7 @@
 
 @end
 
-@implementation GIFCollectionViewController 
+@implementation GIFCollectionViewController
 
 @synthesize gifArray;
 
@@ -94,15 +94,16 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     UIImageView *recipeImageView = (UIImageView *)[cell viewWithTag:1];
-    recipeImageView.image = [UIImage imageWithContentsOfFile:[gifArray objectAtIndex:indexPath.row]];
+    recipeImageView.image = [Utils createThumbnail:[UIImage imageWithContentsOfFile:[gifArray objectAtIndex:indexPath.row]]
+                                          withSize:recipeImageView.frame.size];
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-        // Determine the selected items by using the indexPath
-        NSString *selectedImage = gifArray[indexPath.row];
-        // Add the selected item into the array
+    // Determine the selected items by using the indexPath
+    NSString *selectedImage = gifArray[indexPath.row];
+    // Add the selected item into the array
     [self performSegueWithIdentifier:@"showGIF" sender:selectedImage];
 }
 
@@ -127,11 +128,11 @@
     if (self.isMySnaps) {
         [gifArray addObject:path];
         [self performSelector:@selector(reloadCollectionView) withObject:nil afterDelay:1.0];
-       self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                         target:self
-                                       selector:@selector(reloadCollectionView)
-                                       userInfo:nil
-                                        repeats:YES];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                      target:self
+                                                    selector:@selector(reloadCollectionView)
+                                                    userInfo:nil
+                                                     repeats:YES];
         [self.timer fire];
     }
     [self.collectionView reloadData];
@@ -203,7 +204,7 @@
     NSString *tempPath = [documentsDirectory stringByAppendingFormat:@"/video.mp4"];
     
     [Utils removeAllFilesFromNSTemporaryDirectory];
-
+    
     
     if ([videoData writeToFile:tempPath atomically:NO]) {
         NSLog(@"Video Written Successfully at: %@", tempPath);
@@ -236,7 +237,7 @@
     }
 }
 
-#pragma mark - GIF Manager Protocol 
+#pragma mark - GIF Manager Protocol
 
 - (void)fileDownloaded {
     if (self.isMySnaps) {

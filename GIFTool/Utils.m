@@ -8,6 +8,8 @@
 
 #import "Utils.h"
 #import "GIFManager.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
 
 @implementation Utils
 
@@ -19,7 +21,7 @@
 }
 
 
-+ (void)removeAllFilesFromNSDocumentDirectory {  
++ (void)removeAllFilesFromNSDocumentDirectory {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
@@ -32,9 +34,9 @@
 
 + (void)removeFileFromNSDocumentDirectory:(NSString*)filePath {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", filePath]];
+    //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //    NSString *documentsDirectory = [paths objectAtIndex:0];
+    //    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", filePath]];
     NSError *error;
     [fileManager removeItemAtPath:filePath error:&error];
     if (!error) {
@@ -92,6 +94,47 @@
       initWithTitle:title message:message delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil] show];
 }
 
++ (UIImage*)watermarkImage:(UIImage *)image {
+    UIImage *backgroundImage = image;
+    UIImage *watermarkImage = [UIImage imageNamed:@"icon_01.png"];
+    
+    UIGraphicsBeginImageContext(backgroundImage.size);
+    [backgroundImage drawInRect:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
+    [watermarkImage drawInRect:CGRectMake(backgroundImage.size.width - watermarkImage.size.width, backgroundImage.size.height - watermarkImage.size.height, watermarkImage.size.width, watermarkImage.size.height)];
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return result;
+}
+
++ (UIImage *)createThumbnail:(UIImage *)originalImage withSize:(CGSize)size {
+    UIImage *origImage = originalImage;
+    CGSize destinationSize = size;
+    UIGraphicsBeginImageContext(destinationSize);
+    [origImage drawInRect:CGRectMake(0,0,destinationSize.width,destinationSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
++ (void)saveToPhotoAlbum:(NSString*)path {
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        
+        NSMutableData *gifData = [NSMutableData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"1.gif" ofType:nil]];
+        NSMutableData *data = [NSMutableData dataWithContentsOfFile:path];
+        NSMutableData *gif89 = [NSMutableData dataWithData:[gifData subdataWithRange:NSMakeRange(0, 6)]];
+        [data replaceBytesInRange:NSMakeRange(0, 6) withBytes:gif89.bytes];
+        
+        [library writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
+            if (error) {
+                NSLog(@"Error Saving GIF to Photo Album: %@", error);
+            } else {
+                // TODO: success handling
+                NSLog(@"GIF Saved to %@", assetURL);
+            }
+        }];
+}
+
 + (NSString*)userID {
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"userID"];
 }
@@ -121,6 +164,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"userID"];
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"email"];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isLoggedIn"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"shouldSaveToPhotoAlbum"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     NSMutableSet *set = [GIFManager shared].downloadtasks;
@@ -146,17 +190,13 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"fps"];
 }
 
-+ (UIImage*)watermarkImage:(UIImage *)image {
-    UIImage *backgroundImage = image;
-    UIImage *watermarkImage = [UIImage imageNamed:@"icon_01.png"];
-    
-    UIGraphicsBeginImageContext(backgroundImage.size);
-    [backgroundImage drawInRect:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
-    [watermarkImage drawInRect:CGRectMake(backgroundImage.size.width - watermarkImage.size.width, backgroundImage.size.height - watermarkImage.size.height, watermarkImage.size.width, watermarkImage.size.height)];
-    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return result;
++ (BOOL)shouldSaveToPhotoAlbum {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"shouldSaveToPhotoAlbum"];
 }
++ (void)setSaveToPhotoAlbum:(BOOL)shouldSave {
+    [[NSUserDefaults standardUserDefaults] setBool:shouldSave forKey:@"shouldSaveToPhotoAlbum"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 
 @end

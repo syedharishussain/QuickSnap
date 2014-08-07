@@ -44,10 +44,10 @@
     
     for (int i=0;i<[images count];i++)
     {
-            //load anImage from array
-            UIImage * anImage = [images objectAtIndex:i];
-            
-            CGImageDestinationAddImage(dst, anImage.CGImage,(__bridge CFDictionaryRef)prep);
+        //load anImage from array
+        UIImage * anImage = [images objectAtIndex:i];
+        
+        CGImageDestinationAddImage(dst, anImage.CGImage,(__bridge CFDictionaryRef)prep);
         
     }
     
@@ -57,7 +57,7 @@
         NSLog(@"animated GIF file created at %@", path);
     }else{
         NSLog(@"error: no animated GIF file created at %@", path);
-    }    
+    }
 }
 
 +(void)saveGIFToPhotoAlbumFromImages:(NSArray*)images WithCallbackBlock:(void (^)(void))callbackBlock{
@@ -95,23 +95,26 @@
         
     }];
     
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    success(tempPath);
     
-    NSMutableData *gifData = [NSMutableData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"1.gif" ofType:nil]];
-    NSMutableData *data = [NSMutableData dataWithContentsOfFile:tempPath];
-    NSMutableData *gif89 = [NSMutableData dataWithData:[gifData subdataWithRange:NSMakeRange(0, 6)]];
-    [data replaceBytesInRange:NSMakeRange(0, 6) withBytes:gif89.bytes];
+    if ([Utils shouldSaveToPhotoAlbum])
+        [Utils saveToPhotoAlbum:tempPath];
     
-    [library writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
-        if (error) {
-            NSLog(@"Error Saving GIF to Photo Album: %@", error);
-        } else {
-            // TODO: success handling
-            NSLog(@"GIF Saved to %@", assetURL);
-            
-            success(tempPath);
-        }
-    }];
+    //    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    //
+    //    NSMutableData *gifData = [NSMutableData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"1.gif" ofType:nil]];
+    //    NSMutableData *data = [NSMutableData dataWithContentsOfFile:tempPath];
+    //    NSMutableData *gif89 = [NSMutableData dataWithData:[gifData subdataWithRange:NSMakeRange(0, 6)]];
+    //    [data replaceBytesInRange:NSMakeRange(0, 6) withBytes:gif89.bytes];
+    //
+    //    [library writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
+    //        if (error) {
+    //            NSLog(@"Error Saving GIF to Photo Album: %@", error);
+    //        } else {
+    //            // TODO: success handling
+    //            NSLog(@"GIF Saved to %@", assetURL);
+    //        }
+    //    }];
 }
 
 @end

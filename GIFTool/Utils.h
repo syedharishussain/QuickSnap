@@ -23,6 +23,8 @@
 + (BOOL)NSStringIsValidEmail:(NSString *)string;
 + (void)showAlertWithTitle:(NSString *)title andMessage:(NSString *)message;
 + (UIImage*)watermarkImage:(UIImage *)image;
++ (UIImage *)createThumbnail:(UIImage *)originalImage withSize:(CGSize)size;
++ (void)saveToPhotoAlbum:(NSString*)path;
 
 + (NSString*)userID;
 + (void)setUserID:(NSString*)userID;
@@ -35,6 +37,9 @@
 
 + (void)setFPS:(NSDictionary *)fps;
 + (NSDictionary *)FPS;
+
++ (BOOL)shouldSaveToPhotoAlbum;
++ (void)setSaveToPhotoAlbum:(BOOL)shouldSave;
 
 + (void)clearUserData;
 
