@@ -715,7 +715,7 @@
 				GCC_PREFIX_HEADER = "GIFTool/QuickSnap-Prefix.pch";
 				INFOPLIST_FILE = "GIFTool/QuickSnap-Info.plist";
 				PRODUCT_NAME = QuickSnap;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "37e393b0-162d-46ac-b32f-817e0992c922";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -729,7 +729,7 @@
 				GCC_PREFIX_HEADER = "GIFTool/QuickSnap-Prefix.pch";
 				INFOPLIST_FILE = "GIFTool/QuickSnap-Info.plist";
 				PRODUCT_NAME = QuickSnap;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "37e393b0-162d-46ac-b32f-817e0992c922";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
