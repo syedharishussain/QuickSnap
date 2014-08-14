@@ -122,6 +122,9 @@
 
 - (void)GIFCreationComplete:(NSString *)path {
     [[GIFManager shared] checkLocalFiles];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+    });
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -185,6 +188,7 @@
     if ([videoData writeToFile:tempPath atomically:NO]) {
         NSLog(@"Video Written Successfully at: %@", tempPath);
         [create convertVideoToImages:tempPath];
+//        [self performSelectorInBackground:@selector(createWithDelay:) withObject:tempPath];
     }
     
     [self dismissViewControllerAnimated:YES completion:^{
@@ -200,6 +204,10 @@
         }
     }
 }
+
+//- (void)createWithDelay:(NSString *)tempPath {
+//    [create convertVideoToImages:tempPath];
+//}
 
 -(void)video:(NSString*)videoPath didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo {
     if (error) {

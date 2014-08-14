@@ -25,7 +25,10 @@
 
 #pragma mark - Convert Video to Images
 
-- (void)convertVideoToImages:(NSString*)path {    
+- (void)convertVideoToImages:(NSString*)path {
+    
+    [SVProgressHUD showWithStatus:@"generating.." maskType:SVProgressHUDMaskTypeBlack];
+    
     AVAsset *asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:path]];
     
     //setting up generator & compositor
@@ -92,14 +95,15 @@
 
 - (void)convertImageArrayToGIF:(NSString*)videoPath {
     NSLog(@"---------GIF CREATION STARTED----------");
-//    [SVProgressHUD showWithStatus:@"Creating GIF.."];
+    
     [HJImagesToGIF saveGIFToPhotoAlbumFromImages:self.filePathArray success:^(NSString *filePath) {
-//        [SVProgressHUD dismiss];
+        
         self.data = [NSData dataWithContentsOfFile:filePath];
         self.videoPath = videoPath;
         
         [Utils removeFileFromNSDocumentDirectory:self.videoPath];
         [GIFManager shared].isAllFilesDownloaded = NO;
+        
         [self.delegate GIFCreationComplete:filePath];
     }];
 

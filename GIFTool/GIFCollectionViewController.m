@@ -133,23 +133,29 @@
 #pragma mark - GIFCreationProtocol
 
 - (void)GIFCreationComplete:(NSString *)path {
+    
     [[GIFManager shared] checkLocalFiles];
-    if (self.isMySnaps) {
-        [gifArray addObject:path];
-        [self performSelector:@selector(reloadCollectionView) withObject:nil afterDelay:1.0];
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                                      target:self
-                                                    selector:@selector(reloadCollectionView)
-                                                    userInfo:nil
-                                                     repeats:YES];
-        [self.timer fire];
-    }
-    [self.collectionView reloadData];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if (self.isMySnaps) {
+            [gifArray addObject:path];
+//            [self performSelector:@selector(reloadCollectionView) withObject:nil afterDelay:1.0];
+//            self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+//                                                          target:self
+//                                                        selector:@selector(reloadCollectionView)
+//                                                        userInfo:nil
+//                                                         repeats:YES];
+//            [self.timer fire];
+        }
+        [self.collectionView reloadData];
+        [SVProgressHUD dismiss];
+    });
 }
 
-- (void)reloadCollectionView {
-    [self.collectionView reloadData];
-}
+//- (void)reloadCollectionView {
+//    [self.collectionView reloadData];
+//}
 
 - (void)downloadTask:(float)percentage {
     NSLog(@"Progress: %f , %f", percentage, self.progressBar.progress);
@@ -217,7 +223,9 @@
     
     if ([videoData writeToFile:tempPath atomically:NO]) {
         NSLog(@"Video Written Successfully at: %@", tempPath);
-        [create convertVideoToImages:tempPath];
+        //        [create convertVideoToImages:tempPath];
+        //        [self performSelectorInBackground:@selector(createWithDelay:) withObject:tempPath];
+        [self performSelector:@selector(createWithDelay:) withObject:tempPath afterDelay:0.6];
     }
     
     [self dismissViewControllerAnimated:YES completion:^{
@@ -232,6 +240,10 @@
                                                 @selector(video:didFinishSavingWithError:contextInfo:), nil);
         }
     }
+}
+
+- (void)createWithDelay:(NSString *)tempPath {
+    [create convertVideoToImages:tempPath];
 }
 
 -(void)video:(NSString*)videoPath didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo {

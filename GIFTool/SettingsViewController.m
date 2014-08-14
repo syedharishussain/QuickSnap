@@ -32,13 +32,22 @@
                                                object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     if ([Utils FPS][KEY_SEGMENT])
         segmentedController.selectedSegmentIndex = ((NSNumber*)[Utils FPS][KEY_SEGMENT]).integerValue;
     
     [self.saveGIFSwitch setOn:[Utils shouldSaveToPhotoAlbum]];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+//    if ([Utils FPS][KEY_SEGMENT])
+//        segmentedController.selectedSegmentIndex = ((NSNumber*)[Utils FPS][KEY_SEGMENT]).integerValue;
+//    
+//    [self.saveGIFSwitch setOn:[Utils shouldSaveToPhotoAlbum]];
 }
 
 /*

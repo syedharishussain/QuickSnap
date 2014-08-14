@@ -54,7 +54,7 @@
     bool fileSave = CGImageDestinationFinalize(dst);
     CFRelease(dst);
     if(fileSave) {
-        NSLog(@"animated GIF file created at %@", path);
+        NSLog(@"animated GIF file created at %@", path);        
     }else{
         NSLog(@"error: no animated GIF file created at %@", path);
     }
