@@ -67,8 +67,19 @@
     
     if (self.isMySnaps) {
         gifArray = [[Utils NSDocumentDirfiles] mutableCopy];
-        [self.collectionView reloadData];
+        
+        NSSortDescriptor* sortByDate = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
+        [gifArray sortUsingDescriptors:[NSArray arrayWithObject:sortByDate]];
     }
+    
+    _gifThumbsArray = [NSMutableArray new];
+    
+    [gifArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [_gifThumbsArray addObject:[Utils createThumbnail:[UIImage imageWithContentsOfFile:obj]
+                                                 withSize:CGSizeMake(65, 75)]];
+    }];
+    
+    [self.collectionView reloadData];
     
     [self changeTitleMessageForDownlaoding];
 }
@@ -103,8 +114,7 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     UIImageView *recipeImageView = (UIImageView *)[cell viewWithTag:1];
-    recipeImageView.image = [Utils createThumbnail:[UIImage imageWithContentsOfFile:[gifArray objectAtIndex:indexPath.row]]
-                                          withSize:recipeImageView.frame.size];
+    recipeImageView.image = _gifThumbsArray[indexPath.row];
     
     return cell;
 }
@@ -139,16 +149,13 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         if (self.isMySnaps) {
-            [gifArray addObject:path];
-//            [self performSelector:@selector(reloadCollectionView) withObject:nil afterDelay:1.0];
-//            self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-//                                                          target:self
-//                                                        selector:@selector(reloadCollectionView)
-//                                                        userInfo:nil
-//                                                         repeats:YES];
-//            [self.timer fire];
+            [gifArray insertObject:path atIndex:0];
+            [_gifThumbsArray insertObject:[Utils createThumbnail:[UIImage imageWithContentsOfFile:path]
+                                                        withSize:CGSizeMake(65, 75)] atIndex:0];
+            
+            [self.collectionView reloadData];
         }
-        [self.collectionView reloadData];
+        
         [SVProgressHUD dismiss];
     });
 }
@@ -263,6 +270,17 @@
 - (void)fileDownloaded {
     if (self.isMySnaps) {
         self.gifArray = [[Utils NSDocumentDirfiles] mutableCopy];
+        
+        NSSortDescriptor* sortByDate = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
+        [gifArray sortUsingDescriptors:[NSArray arrayWithObject:sortByDate]];
+        
+        _gifThumbsArray = [NSMutableArray new];
+        
+        [gifArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [_gifThumbsArray addObject:[Utils createThumbnail:[UIImage imageWithContentsOfFile:obj]
+                                                     withSize:CGSizeMake(65, 75)]];
+        }];
+        
         [self.collectionView reloadData];
         
         [self changeTitleMessageForDownlaoding];

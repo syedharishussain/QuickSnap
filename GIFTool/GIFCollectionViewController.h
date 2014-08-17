@@ -13,6 +13,7 @@
 @interface GIFCollectionViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, retain) NSMutableArray *gifArray;
+@property (nonatomic, retain) NSMutableArray *gifThumbsArray;
 @property (nonatomic, assign) BOOL isMySnaps;
 @property (nonatomic, retain) NSTimer *timer;
 

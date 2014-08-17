@@ -39,6 +39,8 @@
         segmentedController.selectedSegmentIndex = ((NSNumber*)[Utils FPS][KEY_SEGMENT]).integerValue;
     
     [self.saveGIFSwitch setOn:[Utils shouldSaveToPhotoAlbum]];
+    
+    self.emailLabel.text = [Utils email];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
