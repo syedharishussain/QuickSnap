@@ -89,7 +89,7 @@ static NSDateFormatter *_displayFormatter = nil;
 			text = NSLocalizedString(@"Yesterday", nil);
 			break;
 		default:
-			text = [NSString stringWithFormat:@"%ld days ago", (NSInteger)daysAgo];
+			text = [NSString stringWithFormat:@"%ld days ago", (long)daysAgo];
 	}
 	return text;
 }
