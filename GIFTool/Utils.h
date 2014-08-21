@@ -19,6 +19,7 @@
 + (void)removeFileFromNSDocumentDirectory:(NSString*)fileName;
 + (NSString*)generateFileNameWithExtension:(NSString *)extensionString;
 + (NSArray*)NSDocumentDirfiles;
++ (NSString *)filenameFromPath:(NSString *)filePath;
 + (BOOL)NSStringIsEmpty:(NSString *)string;
 + (BOOL)NSStringIsValidEmail:(NSString *)string;
 + (void)showAlertWithTitle:(NSString *)title andMessage:(NSString *)message;

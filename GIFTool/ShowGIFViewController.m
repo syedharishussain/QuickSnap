@@ -38,7 +38,7 @@
     
     FLAnimatedImage *animatedImage = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfFile:self.imagePath]];
     self.imageView.animatedImage = animatedImage;
-
+    
     UIImage *image = [UIImage imageNamed:@"icon_01"];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:image];
@@ -83,7 +83,7 @@
     // Pass the selected object to the new view controller.
 }
 
-#pragma mark - UIAlertView Delete 
+#pragma mark - UIAlertView Delete
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
@@ -91,7 +91,7 @@
             
             break;
         }
-        case 1:{ 
+        case 1:{
             NSLog(@"%@", self.imagePath);
             [[GIFManager shared] deleteGIF:self.imagePath completionHandler:^{
                 if ([self.navigationController isNavigationBarHidden])
@@ -101,11 +101,11 @@
             }];
             break;
         }
-      
+            
         default:
             break;
     }
-
+    
 }
 
 #pragma mark - UIActionSheet Delegate
@@ -136,14 +136,19 @@
 #pragma mark - Email
 
 - (void)email {
+    NSString *message = @"";
+    if (self.isMySnaps) {
+        NSString *filename =  [Utils filenameFromPath:self.imagePath];
+        File *file = [GIFManager shared].files[filename];
+        message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a>", file.url, file.url];
+    }
+    
     MFMailComposeViewController * compose = [[MFMailComposeViewController alloc] init];
     [compose setSubject:@"Quick Snap"];
-    [compose setMessageBody:@"" isHTML:NO];
     [compose addAttachmentData:[NSData dataWithContentsOfFile:self.imagePath] mimeType:@"image/gif" fileName:@"image.gif"];
+    [compose setMessageBody:message isHTML:YES];
     [compose setMailComposeDelegate:self];
     [self presentViewController:compose animated:YES completion:^{
-        //        [SVProgressHUD dismiss];
-        
     }];
 }
 
@@ -230,7 +235,7 @@
 
 - (void)toggleNavigationBar:(UITapGestureRecognizer *)tapGestureRecognizer {
     [self.navigationController setNavigationBarHidden:![self.navigationController isNavigationBarHidden] animated:YES];
-
+    
 }
 
 #pragma mark - dealloc

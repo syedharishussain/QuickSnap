@@ -77,6 +77,10 @@
     return array;
 }
 
++ (NSString *)filenameFromPath:(NSString *)filePath {
+    return [[filePath componentsSeparatedByString:@"/"] lastObject];
+}
+
 + (BOOL)NSStringIsEmpty:(NSString *)string {
     return [string isKindOfClass:[NSNull class]] || !string || [string isEqualToString:@""] || string.length <= 0;
 }
