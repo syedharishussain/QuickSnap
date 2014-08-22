@@ -165,8 +165,10 @@
     if (self.isMySnaps) {
         NSString *url = self.shortURL;
         if (!self.shortURL || [self.shortURL isEqualToString:@""] || [self.shortURL isEqualToString:@"Error"]) {
+            if ([self getGIFURL] || ![[self getGIFURL] isEqualToString:@""])
             url = [self getGIFURL];
         }
+        NSLog(@"%@", self.shortURL);
         message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a>", url, url];
     }
     
@@ -199,7 +201,8 @@
     if (self.isMySnaps) {
         NSString *url = self.shortURL;
         if (!self.shortURL || [self.shortURL isEqualToString:@""] || [self.shortURL isEqualToString:@"Error"]) {
-            url = [self getGIFURL];
+            if ([self getGIFURL] || ![[self getGIFURL] isEqualToString:@""])
+                url = [self getGIFURL];
         }
         message = [NSString stringWithFormat:@"%@", url];
     }
