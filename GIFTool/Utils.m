@@ -11,6 +11,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
+#import "NSDate+Helper.h"
 
 @implementation Utils
 
@@ -60,6 +61,15 @@
     return fileName;
 }
 
++ (NSDate *)dateFromString:(NSString *)filename {
+    NSString *string = @"/var/mobile/Applications/7F096D31-EEF2-4703-977F-E32BD9A32615/Documents/File-23-08-2014-12-49-09.GIF";
+    NSString *dateString = [[[[[[string componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"File-"] lastObject] componentsSeparatedByString:@".GIF"] firstObject];
+    NSString *dateFormatString = @"dd-MM-yyyy-hh-mm-ss";
+    NSDate *date = [NSDate dateFromString:dateString withFormat:dateFormatString];
+    NSLog(@"%@", date);
+    return date;
+}
+
 + (NSArray*)NSDocumentDirfiles {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -72,9 +82,25 @@
         [array addObject:[documentsDirectory stringByAppendingPathComponent:obj]];
     }];
     
-//    NSLog(@"files array %@", array);
-    
     return array;
+}
+
++ (NSMutableDictionary*)NSDocumentDirFilesByDate {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSArray *filePathsArray = [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:documentsDirectory  error:nil];
+    
+//    NSMutableArray *array = [NSMutableArray new];
+    
+    NSMutableDictionary *dictionary = [NSMutableDictionary new];
+    
+    [filePathsArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//        [array addObject:[documentsDirectory stringByAppendingPathComponent:obj]];
+        dictionary[[Utils dateFromString:[documentsDirectory stringByAppendingPathComponent:obj]]] = [documentsDirectory stringByAppendingPathComponent:obj];
+    }];
+    
+    return dictionary;
 }
 
 + (NSString *)filenameFromPath:(NSString *)filePath {

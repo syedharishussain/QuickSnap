@@ -29,6 +29,8 @@
 
 #import "GIFManager.h"
 
+#import "NSDate+Helper.h"
+
 @interface ViewController () <CreateGIFProtocol> {
     CreateGIF *create;
 }
