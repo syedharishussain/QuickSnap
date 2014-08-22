@@ -101,7 +101,7 @@
 
 + (UIImage*)watermarkImage:(UIImage *)image {
     UIImage *backgroundImage = image;
-    UIImage *watermarkImage = [UIImage imageNamed:@"icon_01.png"];
+    UIImage *watermarkImage = [UIImage imageNamed:@"watermark.png"];
     
     UIGraphicsBeginImageContext(backgroundImage.size);
     [backgroundImage drawInRect:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
@@ -208,6 +208,14 @@
 }
 + (void)setSaveToPhotoAlbum:(BOOL)shouldSave {
     [[NSUserDefaults standardUserDefaults] setBool:shouldSave forKey:@"shouldSaveToPhotoAlbum"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (BOOL)shouldAttachURL {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"shouldAttachURL"];
+}
++ (void)setShouldAttachURL:(BOOL)shouldAttachURL {
+    [[NSUserDefaults standardUserDefaults] setBool:shouldAttachURL forKey:@"shouldAttachURL"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

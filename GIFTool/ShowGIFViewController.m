@@ -78,6 +78,19 @@
     return  file.url;
 }
 
+- (NSString *)urlForAttachment {
+    NSString *url = @"";
+    if ([Utils shouldAttachURL]) {
+        url = self.shortURL;
+        if (!self.shortURL || [self.shortURL isEqualToString:@""] || [self.shortURL isEqualToString:@"Error"]) {
+            if ([self getGIFURL] || ![[self getGIFURL] isEqualToString:@""])
+                url = [self getGIFURL];
+        }
+        NSLog(@"%@", self.shortURL);
+    }
+    return url;
+}
+
 - (IBAction)share:(id)sender {
     UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"share QuickSnap"
                                                              delegate:self
@@ -163,13 +176,7 @@
 - (void)email {
     NSString *message = @"";
     if (self.isMySnaps) {
-        NSString *url = self.shortURL;
-        if (!self.shortURL || [self.shortURL isEqualToString:@""] || [self.shortURL isEqualToString:@"Error"]) {
-            if ([self getGIFURL] || ![[self getGIFURL] isEqualToString:@""])
-            url = [self getGIFURL];
-        }
-        NSLog(@"%@", self.shortURL);
-        message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a>", url, url];
+        message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a>", [self urlForAttachment], [self urlForAttachment]];
     }
     
     MFMailComposeViewController * compose = [[MFMailComposeViewController alloc] init];
@@ -199,12 +206,7 @@
     
     NSString *message = @"";
     if (self.isMySnaps) {
-        NSString *url = self.shortURL;
-        if (!self.shortURL || [self.shortURL isEqualToString:@""] || [self.shortURL isEqualToString:@"Error"]) {
-            if ([self getGIFURL] || ![[self getGIFURL] isEqualToString:@""])
-                url = [self getGIFURL];
-        }
-        message = [NSString stringWithFormat:@"%@", url];
+        message = [NSString stringWithFormat:@"%@", [self urlForAttachment]];
     }
     
     NSArray *recipents = @[];

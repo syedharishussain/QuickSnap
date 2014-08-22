@@ -310,15 +310,29 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="xeA-tc-NyB">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="xeA-tc-NyB">
                                 <rect key="frame" x="251" y="128" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="U5s-JJ-Wmd" eventType="valueChanged" id="Y1e-MU-VBb"/>
                                 </connections>
                             </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share QuickSnap URL " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W14-TL-Ihl">
+                                <rect key="frame" x="20" y="172" width="191" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="sb8-L9-RyO">
+                                <rect key="frame" x="251" y="167" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="attachURLSwitchValueChaged:" destination="U5s-JJ-Wmd" eventType="valueChanged" id="2C5-7b-Hnt"/>
+                                </connections>
+                            </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OZR-PP-0T5">
-                                <rect key="frame" x="20" y="162" width="280" height="30"/>
+                                <rect key="frame" x="20" y="206" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="FAQ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -333,6 +347,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="Zb9-Pz-ZsP"/>
                     <connections>
+                        <outlet property="attachURLSwitch" destination="sb8-L9-RyO" id="a7t-7g-sTz"/>
                         <outlet property="emailLabel" destination="5WO-TA-K4c" id="qtV-gW-3eE"/>
                         <outlet property="fpsLabel" destination="a9N-0w-ANx" id="zjm-rg-HK7"/>
                         <outlet property="saveGIFSwitch" destination="xeA-tc-NyB" id="e0q-dx-Rxa"/>

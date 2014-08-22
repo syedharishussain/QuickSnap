@@ -15,10 +15,12 @@
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedController;
 @property (weak, nonatomic) IBOutlet UISwitch *saveGIFSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *attachURLSwitch;
 
 - (IBAction)sliderValueChange:(id)sender;
 - (IBAction)logout:(id)sender;
 - (IBAction)segmentedControllerValueChange:(id)sender;
 - (IBAction)switchValueChanged:(id)sender;
+- (IBAction)attachURLSwitchValueChaged:(id)sender;
 
 @end

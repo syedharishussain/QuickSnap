@@ -39,6 +39,7 @@
         segmentedController.selectedSegmentIndex = ((NSNumber*)[Utils FPS][KEY_SEGMENT]).integerValue;
     
     [self.saveGIFSwitch setOn:[Utils shouldSaveToPhotoAlbum]];
+    [self.attachURLSwitch setOn:[Utils shouldAttachURL]];
     
     self.emailLabel.text = [Utils email];
 }
@@ -111,6 +112,10 @@
 
 - (IBAction)switchValueChanged:(id)sender {
     [Utils setSaveToPhotoAlbum:self.saveGIFSwitch.isOn];
+}
+
+- (IBAction)attachURLSwitchValueChaged:(id)sender {
+    [Utils setShouldAttachURL:self.attachURLSwitch.isOn];
 }
 
 #pragma mark - notification 

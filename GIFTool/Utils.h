@@ -42,6 +42,9 @@
 + (BOOL)shouldSaveToPhotoAlbum;
 + (void)setSaveToPhotoAlbum:(BOOL)shouldSave;
 
++ (BOOL)shouldAttachURL;
++ (void)setShouldAttachURL:(BOOL)shouldAttachURL;
+
 + (void)clearUserData;
 
 @end
