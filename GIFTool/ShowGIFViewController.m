@@ -145,7 +145,7 @@
     
     MFMailComposeViewController * compose = [[MFMailComposeViewController alloc] init];
     [compose setSubject:@"Quick Snap"];
-    [compose addAttachmentData:[NSData dataWithContentsOfFile:self.imagePath] mimeType:@"image/gif" fileName:@"image.gif"];
+    [compose addAttachmentData:[NSData dataWithContentsOfFile:self.imagePath] mimeType:@"image/gif" fileName:@"QuickSnap.gif"];
     [compose setMessageBody:message isHTML:YES];
     [compose setMailComposeDelegate:self];
     [self presentViewController:compose animated:YES completion:^{
@@ -161,17 +161,26 @@
 #pragma mark - iMessage
 
 - (void)sendMMS:(NSString*)file {
+    
     if(![MFMessageComposeViewController canSendText]) {
         UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [warningAlert show];
         return;
     }
+    
+    NSString *message = @"";
+    if (self.isMySnaps) {
+        NSString *filename =  [Utils filenameFromPath:self.imagePath];
+        File *file = [GIFManager shared].files[filename];
+        message = [NSString stringWithFormat:@"%@", file.url];
+    }
+    
     NSArray *recipents = @[];
     
     MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
     messageController.messageComposeDelegate = self;
     [messageController setRecipients:recipents];
-    [messageController setBody:nil];
+    [messageController setBody:message];
     
     if([MFMessageComposeViewController respondsToSelector:@selector(canSendAttachments)] && [MFMessageComposeViewController canSendAttachments]) {
         NSString* uti = (NSString*)kUTTypeMessage;
