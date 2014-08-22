@@ -63,7 +63,7 @@
         
         [lib enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
                            usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-                               NSLog(@"%li",(long)[group numberOfAssets]);                               
+//                               NSLog(@"%li",(long)[group numberOfAssets]);                               
                            } failureBlock:^(NSError *error) {
                                if (error.code == ALAssetsLibraryAccessUserDeniedError) {
                                    NSLog(@"user denied access, code: %li",(long)error.code);
@@ -186,7 +186,7 @@
     [Utils removeAllFilesFromNSTemporaryDirectory];
     
     if ([videoData writeToFile:tempPath atomically:NO]) {
-        NSLog(@"Video Written Successfully at: %@", tempPath);
+//        NSLog(@"Video Written Successfully at: %@", tempPath);
         [create convertVideoToImages:tempPath];
 //        [self performSelectorInBackground:@selector(createWithDelay:) withObject:tempPath];
     }

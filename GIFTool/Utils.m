@@ -72,7 +72,7 @@
         [array addObject:[documentsDirectory stringByAppendingPathComponent:obj]];
     }];
     
-    NSLog(@"files array %@", array);
+//    NSLog(@"files array %@", array);
     
     return array;
 }
@@ -141,7 +141,7 @@
 //        }];
     
     [library saveImageData:data toAlbum:@"QuickSnap" metadata:nil completion:^(NSURL *assetURL, NSError *error) {
-        NSLog(@"GIF Saved to %@", assetURL);
+//        NSLog(@"GIF Saved to %@", assetURL);
     } failure:^(NSError *error) {
          NSLog(@"Error Saving GIF to Photo Album: %@", error);
     }];

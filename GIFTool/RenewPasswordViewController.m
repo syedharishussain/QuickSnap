@@ -77,7 +77,7 @@
                   [Utils showAlertWithTitle:nil andMessage:responseObject[@"header"][@"message"]];
               }
 
-              NSLog(@"JSON: %@", responseObject);
+//              NSLog(@"JSON: %@", responseObject);
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               [SVProgressHUD dismiss];
               [Utils showAlertWithTitle:nil andMessage:error.localizedDescription];

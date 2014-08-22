@@ -45,13 +45,38 @@
     
     if (!self.isMySnaps)
         [self.deleteOutlet setEnabled:NO];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    [self performSelectorInBackground:@selector(getShortURLForSharing) withObject:nil];
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        self.shortURL = [self getShortURLofGIF];
+//    });
 }
 
+- (void)getShortURLForSharing {
+    self.shortURL = [self getShortURLofGIF];
+}
+
+- (NSString *)getShortURLofGIF {
+    NSString *apiEndpoint = [NSString stringWithFormat:@"http://tinyurl.com/api-create.php?url=%@",[self getGIFURL]];
+    NSString *shortURL = [NSString stringWithContentsOfURL:[NSURL URLWithString:apiEndpoint]
+                                                  encoding:NSASCIIStringEncoding
+                                                     error:nil];
+    
+    return shortURL;
+}
+- (NSString *)getGIFURL {
+    NSString *filename =  [Utils filenameFromPath:self.imagePath];
+    File *file = [GIFManager shared].files[filename];
+    return  file.url;
+}
 
 - (IBAction)share:(id)sender {
     UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"share QuickSnap"
@@ -92,7 +117,7 @@
             break;
         }
         case 1:{
-            NSLog(@"%@", self.imagePath);
+//            NSLog(@"%@", self.imagePath);
             [[GIFManager shared] deleteGIF:self.imagePath completionHandler:^{
                 if ([self.navigationController isNavigationBarHidden])
                     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -138,9 +163,11 @@
 - (void)email {
     NSString *message = @"";
     if (self.isMySnaps) {
-        NSString *filename =  [Utils filenameFromPath:self.imagePath];
-        File *file = [GIFManager shared].files[filename];
-        message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a>", file.url, file.url];
+        NSString *url = self.shortURL;
+        if (!self.shortURL || [self.shortURL isEqualToString:@""] || [self.shortURL isEqualToString:@"Error"]) {
+            url = [self getGIFURL];
+        }
+        message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a>", url, url];
     }
     
     MFMailComposeViewController * compose = [[MFMailComposeViewController alloc] init];
@@ -170,9 +197,13 @@
     
     NSString *message = @"";
     if (self.isMySnaps) {
-        NSString *filename =  [Utils filenameFromPath:self.imagePath];
-        File *file = [GIFManager shared].files[filename];
-        message = [NSString stringWithFormat:@"%@", file.url];
+        NSString *url = self.shortURL;
+        if (!self.shortURL || [self.shortURL isEqualToString:@""] || [self.shortURL isEqualToString:@"Error"]) {
+            url = [self getGIFURL];
+        }
+        message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a>", url, url];
+
+        message = [NSString stringWithFormat:@"%@", url];
     }
     
     NSArray *recipents = @[];

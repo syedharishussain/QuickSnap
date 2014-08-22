@@ -44,8 +44,8 @@
     NSTimeInterval frameDuration = CMTimeGetSeconds(composition.frameDuration);
     CGFloat totalFrames = round(duration/frameDuration);
     
-    NSLog(@"Frames: %@",[NSString stringWithFormat:@"%.2f Frames",totalFrames]);
-    NSLog(@"Vdo Duration: %@", [NSString stringWithFormat:@"Video Duration : %f",duration]);
+//    NSLog(@"Frames: %@",[NSString stringWithFormat:@"%.2f Frames",totalFrames]);
+//    NSLog(@"Vdo Duration: %@", [NSString stringWithFormat:@"Video Duration : %f",duration]);
     
     NSMutableArray * times = [[NSMutableArray alloc] init];
     
@@ -88,13 +88,13 @@
 
 - (void)updateStatusWithFrame:(NSString *)msg
 {
-    NSLog(@"%@", msg);
+//    NSLog(@"%@", msg);
 }
 
 #pragma mark - Convert Images to GIF
 
 - (void)convertImageArrayToGIF:(NSString*)videoPath {
-    NSLog(@"---------GIF CREATION STARTED----------");
+//    NSLog(@"---------GIF CREATION STARTED----------");
     
     [HJImagesToGIF saveGIFToPhotoAlbumFromImages:self.filePathArray success:^(NSString *filePath) {
         

@@ -15,6 +15,7 @@
 @property (nonatomic, assign) BOOL isMySnaps;
 @property (nonatomic, assign) BOOL toolBarHidden;
 @property (nonatomic, retain) NSString *imagePath;
+@property (nonatomic, retain) NSString *shortURL;
 
 @property (strong, nonatomic) IBOutlet FLAnimatedImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteOutlet;

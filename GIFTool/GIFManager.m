@@ -38,7 +38,7 @@
                                      @"get": @"list",
                                      @"id": [Utils userID]
                                      };
-        
+//        www.plego.info/quick_snap/api.php
         [manager POST:@"http://aceist.com/gifs/api.php"
            parameters:parameters
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -60,7 +60,7 @@
                       
                   }
                   
-                  NSLog(@"JSON: %@", responseObject);
+//                  NSLog(@"JSON: %@", responseObject);
               } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                   [Utils showAlertWithTitle:nil andMessage:error.localizedDescription];
                   NSLog(@"Error: %@", error);
@@ -129,7 +129,7 @@
     
     NSString *fileanme = [[url componentsSeparatedByString:@"/"] lastObject];
     
-    NSLog(@"File To Be Downloaded - %@", fileanme);
+//    NSLog(@"File To Be Downloaded - %@", fileanme);
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -152,7 +152,7 @@
         if (!isAllFilesDownloaded) [self checkLocalFiles];
         
         [self.delegate fileDownloaded];
-        NSLog(@"File downloaded to: %@", filePath);
+//        NSLog(@"File downloaded to: %@", filePath);
     }];
     
     [self.downloadtasks addObject:downloadTask];
@@ -198,7 +198,7 @@
     AFHTTPRequestOperation *operation =
     [manager HTTPRequestOperationWithRequest:request
                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                         NSLog(@"Success %@", responseObject);
+//                                         NSLog(@"Success %@", responseObject);
                                          
                                          NSNumber * success = responseObject[@"header"][@"status"];
                                          
@@ -261,7 +261,7 @@
                                      @"get": @"delete",
                                      @"id": file.Id};
         [manager POST:@"http://aceist.com/gifs/api.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"JSON: %@", responseObject);
+//            NSLog(@"JSON: %@", responseObject);
             [SVProgressHUD dismiss];
             
             NSNumber * success = responseObject[@"header"][@"status"];

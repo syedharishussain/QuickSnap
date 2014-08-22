@@ -80,7 +80,7 @@
             NSLog(@"Error Saving GIF to Photo Album: %@", error);
         } else {
             // TODO: success handling
-            NSLog(@"GIF Saved to %@", assetURL);
+//            NSLog(@"GIF Saved to %@", assetURL);
         }
     }];
 }
