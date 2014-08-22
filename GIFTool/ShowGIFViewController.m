@@ -201,8 +201,6 @@
         if (!self.shortURL || [self.shortURL isEqualToString:@""] || [self.shortURL isEqualToString:@"Error"]) {
             url = [self getGIFURL];
         }
-        message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a>", url, url];
-
         message = [NSString stringWithFormat:@"%@", url];
     }
     
