@@ -186,7 +186,7 @@
     
     // 2 - Get image picker
     UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
-    [cameraUI setVideoMaximumDuration:5.0f];
+    [cameraUI setVideoMaximumDuration:4.0f];
     cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
     // Displays a control that allows the user to choose movie capture
     cameraUI.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *)kUTTypeMovie, nil];
