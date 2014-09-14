@@ -127,7 +127,7 @@
 - (void)downloadGIF:(NSString*)url {
     if (!self.downloadtasks) self.downloadtasks = [NSMutableSet new];
     
-    NSString *fileanme = [[url componentsSeparatedByString:@"/"] lastObject];
+//    NSString *fileanme = [[url componentsSeparatedByString:@"/"] lastObject];
     
 //    NSLog(@"File To Be Downloaded - %@", fileanme);
     
@@ -249,46 +249,46 @@
 
 - (void)deleteGIF:(NSString*)path completionHandler:(void (^)())completion{
     
-    NSString *fileanme = [[path componentsSeparatedByString:@"/"] lastObject];
+//    NSString *fileanme = [[path componentsSeparatedByString:@"/"] lastObject];
     
-    File *file = self.files[fileanme];
+//    File *file = self.files[fileanme];
+//    
+//    if (file && file.Id) {
+//        [SVProgressHUD showWithStatus:@"Deleting.."];
     
-    if (file && file.Id) {
-        [SVProgressHUD showWithStatus:@"Deleting.."];
-        
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        NSDictionary *parameters = @{@"key": @"123456789",
-                                     @"get": @"delete",
-                                     @"id": file.Id};
-        [manager POST:@"http://aceist.com/gifs/api.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            NSLog(@"JSON: %@", responseObject);
-            [SVProgressHUD dismiss];
-            
-            NSNumber * success = responseObject[@"header"][@"status"];
-            
-            if (success.boolValue) {
-                NSMutableDictionary *uploadedGIFs = self.files;
-                [uploadedGIFs removeObjectForKey:fileanme];
-                self.files = uploadedGIFs;
-                
+//        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//        NSDictionary *parameters = @{@"key": @"123456789",
+//                                     @"get": @"delete",
+//                                     @"id": file.Id};
+//        [manager POST:@"http://aceist.com/gifs/api.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+////            NSLog(@"JSON: %@", responseObject);
+//            [SVProgressHUD dismiss];
+//            
+//            NSNumber * success = responseObject[@"header"][@"status"];
+//            
+//            if (success.boolValue) {
+//                NSMutableDictionary *uploadedGIFs = self.files;
+//                [uploadedGIFs removeObjectForKey:fileanme];
+//                self.files = uploadedGIFs;
+    
                 [Utils removeFileFromNSDocumentDirectory:path];
                 
                 completion();
                 
-            }
-            
-            else {
-                [Utils showAlertWithTitle:nil andMessage:responseObject[@"header"][@"message"]];
-            }
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD dismiss];
-            [Utils showAlertWithTitle:nil andMessage:error.localizedDescription];
-            NSLog(@"Error: %@", error);
-        }];
-    } else {
-        [Utils showAlertWithTitle:@"QuickSnap Delete Error" andMessage:@"Data is Syncing with Server, please wait a while before trying again."];
-    }
+//            }
+//            
+//            else {
+//                [Utils showAlertWithTitle:nil andMessage:responseObject[@"header"][@"message"]];
+//            }
+//            
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            [SVProgressHUD dismiss];
+//            [Utils showAlertWithTitle:nil andMessage:error.localizedDescription];
+//            NSLog(@"Error: %@", error);
+//        }];
+//    } else {
+//        [Utils showAlertWithTitle:@"QuickSnap Delete Error" andMessage:@"Data is Syncing with Server, please wait a while before trying again."];
+//    }
 }
 
 

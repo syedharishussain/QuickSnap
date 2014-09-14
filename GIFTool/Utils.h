@@ -17,14 +17,20 @@
 + (void)removeAllFilesFromNSTemporaryDirectory;
 + (void)removeAllFilesFromNSDocumentDirectory;
 + (void)removeFileFromNSDocumentDirectory:(NSString*)fileName;
+
 + (NSString*)generateFileNameWithExtension:(NSString *)extensionString;
+
 + (NSDate *)dateFromString:(NSString *)filename;
+
 + (NSArray*)NSDocumentDirfiles;
 + (NSMutableDictionary*)NSDocumentDirFilesByDate;
 + (NSString *)filenameFromPath:(NSString *)filePath;
+
 + (BOOL)NSStringIsEmpty:(NSString *)string;
 + (BOOL)NSStringIsValidEmail:(NSString *)string;
+
 + (void)showAlertWithTitle:(NSString *)title andMessage:(NSString *)message;
+
 + (UIImage*)watermarkImage:(UIImage *)image;
 + (UIImage *)createThumbnail:(UIImage *)originalImage withSize:(CGSize)size;
 + (void)saveToPhotoAlbum:(NSString*)path;

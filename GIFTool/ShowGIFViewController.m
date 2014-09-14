@@ -80,14 +80,14 @@
 
 - (NSString *)urlForAttachment {
     NSString *url = @"";
-    if ([Utils shouldAttachURL]) {
-        url = self.shortURL;
-        if (!self.shortURL || [self.shortURL isEqualToString:@""] || [self.shortURL isEqualToString:@"Error"]) {
-            if ([self getGIFURL] || ![[self getGIFURL] isEqualToString:@""])
-                url = [self getGIFURL];
-        }
-        NSLog(@"%@", self.shortURL);
-    }
+//    if ([Utils shouldAttachURL]) {
+//        url = self.shortURL;
+//        if (!self.shortURL || [self.shortURL isEqualToString:@""] || [self.shortURL isEqualToString:@"Error"]) {
+////            if ([self getGIFURL] || ![[self getGIFURL] isEqualToString:@""])
+//                url = [self getGIFURL];
+//        }
+//        NSLog(@"%@", self.shortURL);
+//    }
     return url;
 }
 

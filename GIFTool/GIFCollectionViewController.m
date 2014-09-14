@@ -144,7 +144,7 @@
 
 - (void)GIFCreationComplete:(NSString *)path {
     
-    [[GIFManager shared] checkLocalFiles];
+//    [[GIFManager shared] checkLocalFiles];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -159,10 +159,6 @@
         [SVProgressHUD dismiss];
     });
 }
-
-//- (void)reloadCollectionView {
-//    [self.collectionView reloadData];
-//}
 
 - (void)downloadTask:(float)percentage {
     NSLog(@"Progress: %f , %f", percentage, self.progressBar.progress);
@@ -203,13 +199,6 @@
         
     }];
     return YES;
-}
-
-- (IBAction)logout:(id)sender {
-    
-    [Utils clearUserData];
-    
-    [self performSegueWithIdentifier:@"register" sender:nil];
 }
 
 #pragma UIImagePickerController Delegate

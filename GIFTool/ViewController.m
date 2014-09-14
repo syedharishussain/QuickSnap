@@ -79,11 +79,11 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     
-    if (![Utils isLoggedIn]) {
-        [self performSegueWithIdentifier:@"register" sender:nil];
-    } else {
-        //        [[GIFManager shared] checkLocalFiles];
-    }
+//    if (![Utils isLoggedIn]) {
+//        [self performSegueWithIdentifier:@"register" sender:nil];
+//    } else {
+//        //        [[GIFManager shared] checkLocalFiles];
+//    }
 }
 
 - (IBAction)mySnap:(id)sender {
@@ -91,7 +91,8 @@
 }
 
 - (IBAction)allSnap:(id)sender {
-    [self performSegueWithIdentifier:@"collection" sender:@NO];
+    [Utils showAlertWithTitle:@"Coming Soon" andMessage:@"All Snaps are coming soon with some of the best GIFs interent has to offer!"];
+//    [self performSegueWithIdentifier:@"collection" sender:@NO];
 }
 
 - (IBAction)create:(id)sender {
@@ -123,7 +124,7 @@
 #pragma mark - GIFCreationProtocol
 
 - (void)GIFCreationComplete:(NSString *)path {
-    [[GIFManager shared] checkLocalFiles];
+//    [[GIFManager shared] checkLocalFiles];
     dispatch_async(dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
     });
@@ -166,10 +167,6 @@
         
     }];
     return YES;
-}
-
-- (IBAction)logout:(id)sender {
-    
 }
 
 #pragma UIImagePickerController Delegate

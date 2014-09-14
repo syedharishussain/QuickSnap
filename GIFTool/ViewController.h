@@ -23,6 +23,4 @@
 -(BOOL)startCameraControllerFromViewController:(UIViewController*)controller
                                  usingDelegate:(id )delegate;
 
-- (IBAction)logout:(id)sender;
-
 @end
