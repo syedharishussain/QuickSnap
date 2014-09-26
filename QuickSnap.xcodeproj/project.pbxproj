@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		660DC0B3196F1F720070140C /* all-sanp.png in Resources */ = {isa = PBXBuildFile; fileRef = 660DC0A4196F1F720070140C /* all-sanp.png */; };
-		660DC0B4196F1F720070140C /* camera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 660DC0A5196F1F720070140C /* camera-icon.png */; };
 		660DC0B5196F1F720070140C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 660DC0A6196F1F720070140C /* Default-568h@2x.png */; };
 		660DC0B6196F1F720070140C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 660DC0A7196F1F720070140C /* Default@2x.png */; };
 		660DC0B7196F1F720070140C /* icon_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 660DC0A8196F1F720070140C /* icon_01.png */; };
@@ -74,6 +73,7 @@
 		66AC2020198470EE00649A93 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AC201F198470EE00649A93 /* Social.framework */; };
 		66ADE4BD19A1575B004BC164 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADE4BC19A1575B004BC164 /* NSDate+Helper.m */; };
 		66C184CB1977116B00469A18 /* GIFManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C184CA1977116B00469A18 /* GIFManager.m */; };
+		66C2042919D5F0B600DEE260 /* camera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 66C2042819D5F0B600DEE260 /* camera-icon.png */; };
 		66F20257197B416000A0217B /* basic-settings-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F20256197B416000A0217B /* basic-settings-icon.png */; };
 		66F2025A197B42B200A0217B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F20259197B42B200A0217B /* SettingsViewController.m */; };
 		66F20260197B495D00A0217B /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F2025F197B495D00A0217B /* logout.png */; };
@@ -91,7 +91,6 @@
 
 /* Begin PBXFileReference section */
 		660DC0A4196F1F720070140C /* all-sanp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "all-sanp.png"; sourceTree = "<group>"; };
-		660DC0A5196F1F720070140C /* camera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon.png"; sourceTree = "<group>"; };
 		660DC0A6196F1F720070140C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		660DC0A7196F1F720070140C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		660DC0A8196F1F720070140C /* icon_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_01.png; sourceTree = "<group>"; };
@@ -188,6 +187,7 @@
 		66ADE4BC19A1575B004BC164 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
 		66C184C91977116B00469A18 /* GIFManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFManager.h; sourceTree = "<group>"; };
 		66C184CA1977116B00469A18 /* GIFManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFManager.m; sourceTree = "<group>"; };
+		66C2042819D5F0B600DEE260 /* camera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon.png"; sourceTree = "<group>"; };
 		66F20256197B416000A0217B /* basic-settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basic-settings-icon.png"; sourceTree = "<group>"; };
 		66F20258197B42B200A0217B /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		66F20259197B42B200A0217B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -232,11 +232,11 @@
 		660DC0A3196F1F720070140C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				66C2042819D5F0B600DEE260 /* camera-icon.png */,
 				66AB9F5319A7DAA400F9FC03 /* watermark.png */,
 				66F2025F197B495D00A0217B /* logout.png */,
 				66F20256197B416000A0217B /* basic-settings-icon.png */,
 				660DC0A4196F1F720070140C /* all-sanp.png */,
-				660DC0A5196F1F720070140C /* camera-icon.png */,
 				660DC0A6196F1F720070140C /* Default-568h@2x.png */,
 				660DC0A7196F1F720070140C /* Default@2x.png */,
 				660DC0A8196F1F720070140C /* icon_01.png */,
@@ -529,7 +529,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				660DC0B3196F1F720070140C /* all-sanp.png in Resources */,
-				660DC0B4196F1F720070140C /* camera-icon.png in Resources */,
 				660DC0B9196F1F720070140C /* Icon-60@2x.png in Resources */,
 				660DC0BB196F1F720070140C /* Icon-Small@2x.png in Resources */,
 				66F20257197B416000A0217B /* basic-settings-icon.png in Resources */,
@@ -538,6 +537,7 @@
 				66F20260197B495D00A0217B /* logout.png in Resources */,
 				660DC0B5196F1F720070140C /* Default-568h@2x.png in Resources */,
 				6632E39C1930495E00D9CFFA /* SVProgressHUD.bundle in Resources */,
+				66C2042919D5F0B600DEE260 /* camera-icon.png in Resources */,
 				66964102191FF73E00017C73 /* Images.xcassets in Resources */,
 				660DC0BA196F1F720070140C /* Icon-Small.png in Resources */,
 				6696416A191FFB0400017C73 /* 2.gif in Resources */,
@@ -725,7 +725,7 @@
 				GCC_PREFIX_HEADER = "GIFTool/QuickSnap-Prefix.pch";
 				INFOPLIST_FILE = "GIFTool/QuickSnap-Info.plist";
 				PRODUCT_NAME = QuickSnap;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "83488100-652d-449f-b312-ed72cd4ccd9b";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -734,12 +734,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Plego Technologies, LLC (75975U3UB4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GIFTool/QuickSnap-Prefix.pch";
 				INFOPLIST_FILE = "GIFTool/QuickSnap-Info.plist";
 				PRODUCT_NAME = QuickSnap;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "83488100-652d-449f-b312-ed72cd4ccd9b";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
