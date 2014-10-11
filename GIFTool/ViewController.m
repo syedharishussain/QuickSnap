@@ -91,7 +91,7 @@
 }
 
 - (IBAction)allSnap:(id)sender {
-    [Utils showAlertWithTitle:@"Coming Soon" andMessage:@"All Snaps are coming soon with some of the best GIFs interent has to offer!"];
+    [Utils showAlertWithTitle:@"Coming Soon" andMessage:@"All Snaps are coming soon with some of the best GIFs the Internet has to offer!"];
 //    [self performSegueWithIdentifier:@"collection" sender:@NO];
 }
 
