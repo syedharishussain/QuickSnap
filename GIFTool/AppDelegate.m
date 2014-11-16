@@ -9,11 +9,18 @@
 #import "AppDelegate.h"
 #import "GIFManager.h"
 
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+//    [IMGSession authenticatedSessionWithClientID:@"59330fa14b59648"
+//                                          secret:@"9db9d249d45049f00bd91310415738270d502c2e"
+//                                        authType:IMGCodeAuth
+//                                    withDelegate:self];
+    
+    [IMGSession anonymousSessionWithClientID:@"59330fa14b59648" withDelegate:self];
     return YES;
 }
 							
@@ -44,5 +51,49 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+#pragma mark - IMGSessionDelegate
+
+//-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+//    
+//    //app must register url scheme which starts the app at this endpoint with the url containing the code
+//    
+//    
+//    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+//    for (NSString *param in [[url query] componentsSeparatedByString:@"&"]) {
+//        NSArray *elts = [param componentsSeparatedByString:@"="];
+//        if([elts count] < 2) continue;
+//        [params setObject:[elts objectAtIndex:1] forKey:[elts objectAtIndex:0]];
+//    }
+//    
+//    NSString * pinCode = params[@"code"];
+//    
+//    if(!pinCode){
+//        NSLog(@"error: %@", params[@"error"]);
+//        
+////        self.continueHandler = nil;
+//        
+//        UIAlertView * a = [[UIAlertView alloc] initWithTitle:@"error" message:@"Access was denied by Imgur" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try Again",nil];
+//        [a show];
+//        
+//        return NO;
+//    }
+//    
+//    [[IMGSession sharedInstance] authenticateWithCode:pinCode];
+//    
+////    if(_continueHandler)
+////        self.continueHandler();
+//    
+//    
+//    return YES;
+//}
+
+//-(void)imgurSessionNeedsExternalWebview:(NSURL *)url completion:(void (^)())completion{
+//    
+//    //open imgur website to authenticate with callback url in safari
+//    [[UIApplication sharedApplication] openURL:url];
+//    
+//    //save the completion block for later use when imgur responds with url callback
+//}
 
 @end

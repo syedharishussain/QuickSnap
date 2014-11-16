@@ -31,6 +31,8 @@
 
 #import "NSDate+Helper.h"
 
+#import "ImgurSession.h"
+
 @interface ViewController () <CreateGIFProtocol> {
     CreateGIF *create;
 }
@@ -84,6 +86,34 @@
 //    } else {
 //        //        [[GIFManager shared] checkLocalFiles];
 //    }
+    
+    [IMGGalleryRequest userGalleryPage:0 showViral:YES success:^(NSArray * objects) {
+        
+        
+        
+    } failure:^(NSError *error) {
+        
+    }];
+    
+    [IMGAccountRequest accountAlbumIDsWithUser:@"reactiongifsarchive" success:^(NSArray *albumIDs) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
+    
+    [IMGAlbumRequest albumWithID:@"JNzjB" success:^(IMGAlbum *album) {
+        IMGAlbum *myAlbum = album;
+        NSArray *images = myAlbum.images;
+        [myAlbum.images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            IMGImage *image = obj;
+        }];
+        NSLog(@"IMGUR TEST");
+        
+    } failure:^(NSError *error) {
+        NSLog(@"IMGUR FAIL");
+    }];
+    
+    
 }
 
 - (IBAction)mySnap:(id)sender {
