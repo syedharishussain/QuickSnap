@@ -25,4 +25,5 @@
 
 - (IBAction)deleteGIF:(id)sender;
 
+- (IBAction)toggleNavigationBa:(id)sender;
 @end

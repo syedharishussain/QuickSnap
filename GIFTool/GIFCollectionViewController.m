@@ -75,8 +75,22 @@
     _gifThumbsArray = [NSMutableArray new];
     
     [gifArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [_gifThumbsArray addObject:[Utils createThumbnail:[UIImage imageWithContentsOfFile:obj]
-                                                 withSize:CGSizeMake(65, 75)]];
+        UIImage *image = [UIImage imageWithContentsOfFile:obj];
+        CGSize size;
+        
+        if (image.size.width > image.size.height) {
+            size = CGSizeMake(65,
+                              image.size.height / (image.size.width / 65) );
+        } else if (image.size.width < image.size.height) {
+            size = CGSizeMake(image.size.width / (image.size.height / 65),
+                              75 );
+        } else {
+            size = CGSizeMake(65,
+                              65 );
+        }
+        
+        [_gifThumbsArray addObject:[Utils createThumbnail:image
+                                                 withSize:size]];
     }];
     
     [self.collectionView reloadData];
@@ -114,7 +128,17 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     UIImageView *recipeImageView = (UIImageView *)[cell viewWithTag:1];
-    recipeImageView.image = _gifThumbsArray[indexPath.row];
+    
+    UIImage *image =  _gifThumbsArray[indexPath.row];
+    
+//    recipeImageView.frame = CGRectMake(recipeImageView.frame.origin.x,
+//                                       (image.size.width > image.size.height) ?
+//                                       recipeImageView.frame.origin.y + ((75 - image.size.height) / 2) :
+//                                       recipeImageView.frame.origin.y,
+//                                       image.size.width,
+//                                       image.size.height);
+    
+    recipeImageView.image = image;
     
     return cell;
 }

@@ -91,8 +91,8 @@
 }
 
 - (IBAction)allSnap:(id)sender {
-    [Utils showAlertWithTitle:@"Coming Soon" andMessage:@"All Snaps are coming soon with some of the best GIFs the Internet has to offer!"];
-//    [self performSegueWithIdentifier:@"collection" sender:@NO];
+//    [Utils showAlertWithTitle:@"Coming Soon" andMessage:@"All Snaps are coming soon with some of the best GIFs the Internet has to offer!"];
+    [self performSegueWithIdentifier:@"collection" sender:@NO];
 }
 
 - (IBAction)create:(id)sender {
@@ -104,6 +104,8 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
+
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"collection"]) {
@@ -113,8 +115,41 @@
         if (isMySnap) {
             con.gifArray = [[Utils NSDocumentDirfiles] mutableCopy];
         } else {
-            NSArray *array = @ [[[NSBundle mainBundle] pathForResource:@"1.gif" ofType:nil],
-                                [[NSBundle mainBundle] pathForResource:@"2.gif" ofType:nil]];
+            NSArray *array = @ [[[NSBundle mainBundle] pathForResource:@"gif-1.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-2.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-3.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-4.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-5.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-6.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-7.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-8.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-9.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-10.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-11.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-12.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-13.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-14.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-15.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-16.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-17.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-18.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-19.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-20.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-21.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-22.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-23.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-24.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-25.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-26.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-27.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-28.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-29.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-30.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-31.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-32.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-33.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-34.gif" ofType:nil],
+                                [[NSBundle mainBundle] pathForResource:@"gif-35.gif" ofType:nil]];
             con.gifArray = [array mutableCopy];
         }
     }

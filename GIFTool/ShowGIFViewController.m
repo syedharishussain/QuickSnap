@@ -29,10 +29,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleNavigationBar:)];
-    tapGestureRecognizer.numberOfTapsRequired = 1;
-    tapGestureRecognizer.numberOfTouchesRequired = 1;
-    [self.imageView addGestureRecognizer:tapGestureRecognizer];
+//    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleNavigationBar:)];
+//    tapGestureRecognizer.numberOfTapsRequired = 1;
+//    tapGestureRecognizer.numberOfTouchesRequired = 1;
+//    [self.imageView addGestureRecognizer:tapGestureRecognizer];
     
     [self.imageView setUserInteractionEnabled:YES];
     
@@ -43,10 +43,37 @@
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:image];
     
-    if (!self.isMySnaps)
+    if (!self.isMySnaps) {
         [self.deleteOutlet setEnabled:NO];
-    
-    
+        
+        CGSize imageSize = animatedImage.size;
+        CGRect frame;
+        
+        if (imageSize.width > self.imageView.frame.size.width) {
+            float diff = imageSize.width / self.imageView.frame.size.width;
+            imageSize.width = imageSize.width / diff;
+            imageSize.height = imageSize.height / diff;
+        }
+        
+        if (imageSize.width < self.imageView.frame.size.width) {
+            float diff = self.imageView.frame.size.width / imageSize.width;
+            imageSize.width = imageSize.width * diff;
+            imageSize.height = imageSize.height * diff;
+        }
+        
+        if (imageSize.width == 320) {
+            
+        }
+        
+        float hDiff = self.imageView.frame.size.height - imageSize.height;
+        
+        frame = CGRectMake(self.imageView.frame.origin.x,
+                           self.imageView.frame.origin.y + (hDiff / 2),
+                           imageSize.width,
+                           imageSize.height);
+        
+        self.imageView.frame = frame;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -109,6 +136,10 @@
                               nil];
     alertView.tag = 100;
     [alertView show];
+}
+
+- (IBAction)toggleNavigationBa:(id)sender {
+    [self.navigationController setNavigationBarHidden:![self.navigationController isNavigationBarHidden] animated:YES];
 }
 
 
