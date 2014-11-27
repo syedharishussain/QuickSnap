@@ -55,8 +55,8 @@
     NSDate *time = [NSDate date];
     NSDateFormatter* df = [NSDateFormatter new];
     [df setDateFormat:@"dd-MM-yyyy-hh-mm-ss"];
-    NSString *timeString = [df stringFromDate:time];
-    NSString *fileName = [NSString stringWithFormat:@"File-%@%@", timeString, extensionString];
+    NSString *timeString = [NSString stringWithFormat:@"%d", (int)[time timeIntervalSince1970]];//[df stringFromDate:time];
+    NSString *fileName = [NSString stringWithFormat:@"%@%@", timeString, extensionString];
     
     return fileName;
 }
