@@ -35,8 +35,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([Utils FPS][KEY_SEGMENT])
+    if ([Utils FPS][KEY_SEGMENT]) {
         segmentedController.selectedSegmentIndex = ((NSNumber*)[Utils FPS][KEY_SEGMENT]).integerValue;
+        self.fpsLabel.text = [NSString stringWithFormat:@"%@", [segmentedController titleForSegmentAtIndex:segmentedController.selectedSegmentIndex]];
+    }
     
     [self.saveGIFSwitch setOn:[Utils shouldSaveToPhotoAlbum]];
     [self.attachURLSwitch setOn:[Utils shouldAttachURL]];
