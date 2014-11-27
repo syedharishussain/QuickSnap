@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>1213428A-A965-4AE5-B38E-93232EAA63D7</string>
+	<string>B4F74782-1D47-4845-A11A-C60956B6D407</string>
 	<key>IDESourceControlProjectName</key>
 	<string>QuickSnap</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,7 +14,7 @@
 		<string>https://github.com/syedharishussain/QuickSnap.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>QuickSnap.xcodeproj/project.xcworkspace</string>
+	<string>QuickSnap.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>70A0DB0AA40EFC5E5AF8AB398C0B052FC0BF0D44</key>
