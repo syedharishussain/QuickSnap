@@ -74,6 +74,7 @@
                                }
                            }];
     }
+    [Utils renameFile];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

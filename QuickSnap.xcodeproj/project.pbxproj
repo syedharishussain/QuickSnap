@@ -869,8 +869,8 @@
 		6696411A191FF73E00017C73 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iOS Distribution: JET Studios LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Distribution: JET Studios LLC";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GIFTool/QuickSnap-Prefix.pch";
 				INFOPLIST_FILE = "GIFTool/QuickSnap-Info.plist";

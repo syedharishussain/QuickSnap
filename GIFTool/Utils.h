@@ -24,6 +24,8 @@
 
 + (NSArray*)NSDocumentDirfiles;
 + (NSMutableDictionary*)NSDocumentDirFilesByDate;
++ (NSString *)renameFilefromName:(NSString *)oldName;
++ (void)renameFile;
 + (NSString *)filenameFromPath:(NSString *)filePath;
 
 + (BOOL)NSStringIsEmpty:(NSString *)string;

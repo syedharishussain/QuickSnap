@@ -66,7 +66,13 @@
     NSString *dateString = [[[[[[string componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"File-"] lastObject] componentsSeparatedByString:@".GIF"] firstObject];
     NSString *dateFormatString = @"dd-MM-yyyy-hh-mm-ss";
     NSDate *date = [NSDate dateFromString:dateString withFormat:dateFormatString];
-    NSLog(@"%@", date);
+    return date;
+}
+
++ (NSDate *)dateFromOldDateFormat:(NSString *)fileName {
+
+    NSString *dateFormatString = @"dd-MM-yyyy-hh-mm-ss";
+    NSDate *date = [NSDate dateFromString:fileName withFormat:dateFormatString];
     return date;
 }
 
@@ -101,6 +107,38 @@
     }];
     
     return dictionary;
+}
+
++ (NSString *)renameFilefromName:(NSString *)oldName {
+    NSDate *date = [Utils dateFromOldDateFormat:oldName];
+    NSString *newName = [NSString stringWithFormat:@"%d", (int)[date timeIntervalSince1970]];
+    return newName;
+}
+
++ (void)renameFile {
+    [[Utils NSDocumentDirfiles] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSString *file = obj;
+        NSArray *array = [file componentsSeparatedByString:@"Documents"];
+        NSArray *array2 = [array.lastObject componentsSeparatedByString:@"File-"] ;
+        NSString *fileName = array2.lastObject;
+        
+        if (fileName && array2.count == 2) {
+            NSLog(@"%@", [Utils renameFilefromName:[[obj componentsSeparatedByString:@"File-"].lastObject componentsSeparatedByString:@".GIF"].firstObject]);
+            
+            NSString *newName = [Utils renameFilefromName:[[obj componentsSeparatedByString:@"File-"].lastObject componentsSeparatedByString:@".GIF"].firstObject];
+            
+            NSString *path = [[obj componentsSeparatedByString:@"/File-"] firstObject];
+            path = [NSString stringWithFormat:@"%@/%@.GIF",path,newName];
+            
+            
+            NSError * err = NULL;
+            NSFileManager * fm = [[NSFileManager alloc] init];
+            BOOL result = [fm moveItemAtPath:file toPath:path error:&err];
+            if(!result)
+                NSLog(@"Error: %@", err);
+            
+        }
+    }];
 }
 
 + (NSString *)filenameFromPath:(NSString *)filePath {
