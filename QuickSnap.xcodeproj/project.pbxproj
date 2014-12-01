@@ -599,7 +599,7 @@
 				ORGANIZATIONNAME = HarisHussain;
 				TargetAttributes = {
 					669640E5191FF73E00017C73 = {
-						DevelopmentTeam = 75975U3UB4;
+						DevelopmentTeam = K3U6P63AN9;
 					};
 					66964106191FF73E00017C73 = {
 						TestTargetID = 669640E5191FF73E00017C73;
@@ -861,7 +861,7 @@
 				GCC_PREFIX_HEADER = "GIFTool/QuickSnap-Prefix.pch";
 				INFOPLIST_FILE = "GIFTool/QuickSnap-Info.plist";
 				PRODUCT_NAME = QuickSnap;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "560f325c-e108-4230-a5e1-27948e43ffad";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -875,7 +875,7 @@
 				GCC_PREFIX_HEADER = "GIFTool/QuickSnap-Prefix.pch";
 				INFOPLIST_FILE = "GIFTool/QuickSnap-Info.plist";
 				PRODUCT_NAME = QuickSnap;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "560f325c-e108-4230-a5e1-27948e43ffad";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
